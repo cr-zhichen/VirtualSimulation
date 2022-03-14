@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using LitJson;
 using Newtonsoft.Json;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Loding : MonoBehaviour
@@ -24,9 +25,6 @@ public class Loding : MonoBehaviour
     
     public void StartLoding()
     {
-        
-        Debug.Log(emailText.text);
-        Debug.Log(password.text);
 
         JsonData jsonData = new JsonData();
         jsonData["Md5Email"]= Md5.ToCalculateMd5(emailText.text);
@@ -36,11 +34,19 @@ public class Loding : MonoBehaviour
         var webRequest=GameManager.Instance.GetComponent<WebRequest>();
         webRequest.Post(url,new WebRequest.HttpHelperPostGetCallbacks((code, request, rsponse) =>
         {
-            Debug.LogWarning(rsponse.text);
+            
             if (rsponse.code==200)
             {
                 var a=JsonConvert.DeserializeObject<rsponseOK>(rsponse.text);
+                GameManager.Instance.userData.openId = Md5.ToCalculateMd5(emailText.text);
+                GameManager.Instance.userData.email = emailText.text;
+                GameManager.Instance.userData.password = password.text;
                 GameManager.Instance.userData.token = a.token;
+                SceneManager.LoadScene("VirtualSimulation");
+            }
+            else
+            {
+                Debug.LogWarning(rsponse.text);
             }
         }),jsonData);
     }

@@ -97,9 +97,9 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 112000000, guid: bc097a37466d0274489f8fe25cf88853,
+  m_LightingDataAsset: {fileID: 112000000, guid: cf9996d769c3ae2409bfac80f789c3ab,
     type: 2}
-  m_LightingSettings: {fileID: 4890085278179872738, guid: b494a4b582ee0c743bc364ef0359acb6,
+  m_LightingSettings: {fileID: 4890085278179872738, guid: f72ae4c0f856b7343b2bb1e175a5a73c,
     type: 2}
 --- !u!196 &4
 NavMeshSettings:
@@ -1926,6 +1926,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee9ca8b4e79e4c94d9f5d87a1e68202f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  userData:
+    openId: 
+    email: 
+    password: 
+    token: 
   camaraTarget:
     prefab: {fileID: 5291009779342882551, guid: 7caa87c63a9c19648b1b1c186b879232,
       type: 3}

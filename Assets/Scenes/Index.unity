@@ -451,8 +451,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 335777909}
   m_TextComponent: {fileID: 412896708}
   m_Placeholder: {fileID: 176219242}
-  m_ContentType: 0
-  m_InputType: 0
+  m_ContentType: 7
+  m_InputType: 2
   m_AsteriskChar: 42
   m_KeyboardType: 0
   m_LineType: 0
@@ -523,6 +523,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 373595708}
+  - component: {fileID: 373595709}
+  - component: {fileID: 373595710}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -545,6 +547,71 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &373595709
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 373595707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee9ca8b4e79e4c94d9f5d87a1e68202f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  userData:
+    openId: 
+    email: 
+    password: 
+    token: 
+  camaraTarget:
+    prefab: {fileID: 5291009779342882551, guid: 7caa87c63a9c19648b1b1c186b879232,
+      type: 3}
+    target: {fileID: 0}
+  camaraParameter:
+    cameraGameObject: {fileID: 0}
+    cameraPosition: {x: 0, y: 0, z: 0}
+    cameraRotate: {x: 0, y: 0, z: 0, w: 0}
+    cameraDistance: 0
+  camaraOperation:
+    cameraAutoRotate: 0
+    noOperationHomingCameraAutoRotate: 0.1
+    cameraRotateSpeed: -5
+    cameraMoveSpeed: 50
+    cameraMAXDistance: 30
+    cameraMINDistance: 10
+    cameraZoomSpeed: 5
+    cameraCurrentZoom: 0
+  camaraLocationLimit:
+    camaraLimitX: {x: -30, y: 30}
+    camaraLimitY: {x: 0, y: 30}
+    camaraLimitZ: {x: -30, y: 30}
+    camaraAngle: {x: 0, y: 45}
+  camaraTransform:
+  - wordClickUI: {fileID: 0}
+    camaraPos: {x: 0, y: 0, z: 0}
+    camaraRot: {x: 0, y: 0, z: 0, w: 1}
+  - wordClickUI: {fileID: 0}
+    camaraPos: {x: -5.385, y: 11.8, z: 8.45}
+    camaraRot: {x: 0.12034168, y: 0.87633884, z: -0.19553933, w: 0.42345315}
+  - wordClickUI: {fileID: 0}
+    camaraPos: {x: 7.92, y: 4.26, z: -2.18}
+    camaraRot: {x: -0.011797821, y: 0.6945953, z: -0.043030083, w: -0.7180158}
+  groundShader:
+    groundGameObject: {fileID: 0}
+    groundSpeed: 0.01
+--- !u!114 &373595710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 373595707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43e1d0eeac4a9704cbb90cc67fc06ab6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &412896706
 GameObject:
   m_ObjectHideFlags: 0
@@ -1127,13 +1194,13 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1422622093}
   m_TextComponent: {fileID: 602790538}
   m_Placeholder: {fileID: 1499820396}
-  m_ContentType: 0
+  m_ContentType: 6
   m_InputType: 0
   m_AsteriskChar: 42
-  m_KeyboardType: 0
+  m_KeyboardType: 7
   m_LineType: 0
   m_HideMobileInput: 0
-  m_CharacterValidation: 0
+  m_CharacterValidation: 5
   m_CharacterLimit: 0
   m_OnSubmit:
     m_PersistentCalls:
@@ -1522,5 +1589,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 673d8cf4be1693148b66504808dbbcef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  emailText: {fileID: 602790538}
-  password: {fileID: 412896708}
+  emailText: {fileID: 1422622092}
+  password: {fileID: 335777908}

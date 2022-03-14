@@ -17,13 +17,16 @@ using UnityEngine.UI;
 public class Loding : MonoBehaviour
 {
 
-    public Text emailText;
-    public Text password;
+    public InputField emailText;
+    public InputField password;
 
     private string url = "https://localhost:7129/api/Users/Loding";
     
     public void StartLoding()
     {
+        
+        Debug.Log(emailText.text);
+        Debug.Log(password.text);
 
         JsonData jsonData = new JsonData();
         jsonData["Md5Email"]= Md5.ToCalculateMd5(emailText.text);

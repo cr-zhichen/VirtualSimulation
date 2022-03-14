@@ -1,0 +1,7 @@
+ManifestFileVersion: 0
+CRC: 3308907403
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: bicycle
+      Dependencies: {}

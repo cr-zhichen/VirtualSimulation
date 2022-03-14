@@ -11,6 +11,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UIElements;
@@ -24,6 +25,26 @@ public class GameManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(this);
     }
+
+    // private void Start()
+    // {
+    //     var myLoadedAssetBundle 
+    //         = AssetBundle.LoadFromFile(Path.Combine(Application.streamingAssetsPath, "bicycle"));
+    //     if (myLoadedAssetBundle == null) {
+    //         Debug.Log("Failed to load AssetBundle!");
+    //         return;
+    //     }
+    //     
+    //     var myLoadedAssetBundle2
+    //         = AssetBundle.LoadFromFile(Path.Combine(Application.streamingAssetsPath, "models"));
+    //     if (myLoadedAssetBundle == null) {
+    //         Debug.Log("Failed to load AssetBundle!");
+    //         return;
+    //     }
+    //     
+    //     var prefab = myLoadedAssetBundle.LoadAsset<GameObject>("自行车 Variant");
+    //     Instantiate(prefab);
+    // }
 
     [HeaderAttribute("相机目标")]
     public CamaraTarget camaraTarget;

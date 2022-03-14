@@ -9,7 +9,7 @@ public class Target : MonoBehaviour
 {
     private void Start()
     {
-        Instantiate(GameManager.Instance.camaraTarget.prefab,this.transform);
+        // Instantiate(GameManager.Instance.camaraTarget.prefab,this.transform);
         GameManager.Instance.camaraTarget.target = this.transform;
     }
     

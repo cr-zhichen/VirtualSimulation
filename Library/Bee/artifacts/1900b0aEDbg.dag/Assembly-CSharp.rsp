@@ -370,6 +370,7 @@
 "Assets/Scripts/UI/CameraRotateSpeed_UI.cs"
 "Assets/Scripts/UI/UIOrientation.cs"
 "Assets/Scripts/UI/Zoom_UI.cs"
+"Assets/Scripts/WWW/ForABPackage.cs"
 "Assets/Tools/EasyTouchBundle/EasyTouch/Examples/4.X/AdvancedExamples/AutoSelect/MultiLayerTouch.cs"
 "Assets/Tools/EasyTouchBundle/EasyTouch/Examples/4.X/AdvancedExamples/AutoSelect/MultiLayerUI.cs"
 "Assets/Tools/EasyTouchBundle/EasyTouch/Examples/4.X/AdvancedExamples/MultiCamera/MultiCameraTouch.cs"

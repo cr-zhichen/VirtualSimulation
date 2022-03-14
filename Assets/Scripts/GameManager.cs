@@ -25,26 +25,9 @@ public class GameManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(this);
     }
-
-    // private void Start()
-    // {
-    //     var myLoadedAssetBundle 
-    //         = AssetBundle.LoadFromFile(Path.Combine(Application.streamingAssetsPath, "bicycle"));
-    //     if (myLoadedAssetBundle == null) {
-    //         Debug.Log("Failed to load AssetBundle!");
-    //         return;
-    //     }
-    //     
-    //     var myLoadedAssetBundle2
-    //         = AssetBundle.LoadFromFile(Path.Combine(Application.streamingAssetsPath, "models"));
-    //     if (myLoadedAssetBundle == null) {
-    //         Debug.Log("Failed to load AssetBundle!");
-    //         return;
-    //     }
-    //     
-    //     var prefab = myLoadedAssetBundle.LoadAsset<GameObject>("自行车 Variant");
-    //     Instantiate(prefab);
-    // }
+    
+    [HeaderAttribute("用户信息")]
+    public UserData userData;
 
     [HeaderAttribute("相机目标")]
     public CamaraTarget camaraTarget;
@@ -64,6 +47,18 @@ public class GameManager : MonoBehaviour
     [HeaderAttribute("地面控制")] 
     public GroundShader groundShader;
 
+    /// <summary>
+    /// 用户信息
+    /// </summary>
+    [System.Serializable]
+    public class UserData
+    {
+        public string openId;
+        public string email;
+        public string password;
+        public string token;
+    }
+    
     /// <summary>
     /// 相机目标
     /// </summary>

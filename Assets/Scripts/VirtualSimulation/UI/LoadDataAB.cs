@@ -53,8 +53,8 @@ public class LoadDataAB : MonoBehaviour
                 {
                     Id = data.id,
                     Name = data.name,
-                    Image = "https://kai.chengrui.xyz/" + data.image,
-                    AB = "https://kai.chengrui.xyz/" + data.ab,
+                    Image = "https://kai.chengrui.xyz/VirtualSimulation/Image/" + data.image,
+                    AB = "https://kai.chengrui.xyz/VirtualSimulation/AssetBundles/" + data.ab,
                     Group = data.group
                 };
                 showAbPackageReturns.Add(_showABPackageReturn);

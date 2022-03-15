@@ -1,0 +1,73 @@
+/*****************************************
+
+    文件：LoadDataAB.cs
+    作者：张程瑞
+    邮箱：296529530@qq.com
+    日期：2022/3/15 16:52:29
+    功能：从服务器获取AB包列表
+
+******************************************/
+using System.Collections;
+using System.Collections.Generic;
+using LitJson;
+using Newtonsoft.Json;
+using UnityEngine;
+
+public class LoadDataAB : MonoBehaviour
+{
+
+    private string url = "https://localhost:7129/api/Users/ShowABPackage";
+
+    public List<ShowABPackageReturn> ShowAbPackageReturns;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        Load();
+    }
+
+    public void Load()
+    {
+
+        JsonData jsonData = new JsonData();
+        jsonData["openid"] = GameManager.Instance.userData.openId;
+        jsonData["password"] = Md5.ToCalculateMd5(GameManager.Instance.userData.password);
+        
+        var webRequest = GameManager.Instance.GetComponent<WebRequest>();
+        webRequest.Post(url,new WebRequest.HttpHelperPostGetCallbacks((code, request, rsponse) =>
+        {
+            Debug.Log(rsponse.text);
+            var a=JsonConvert.DeserializeObject<Tool.ReturnClassList>(rsponse.text);
+            
+            Debug.Log(a.data);
+
+            foreach (var data in a.data)
+            {
+                ShowAbPackageReturns.Add(new ShowABPackageReturn
+                {
+                    Id = data.id,
+                    Name = data.name,
+                    Image = "https://kai.chengrui.xyz/"+data.image,
+                    AB = "https://kai.chengrui.xyz/"+data.ab,
+                    Group = data.group
+                
+                });
+            }
+            
+            
+            
+            
+        }),jsonData,GameManager.Instance.userData.token);
+    }
+    
+    [System.Serializable]
+    public class ShowABPackageReturn
+    {
+        public long Id ;
+        public string Name;
+        public string Image;
+        public string AB ;
+        public int Group;
+    }
+    
+}

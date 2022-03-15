@@ -7,6 +7,8 @@
     功能：网络请求
 
 ******************************************/
+
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Tool
@@ -22,7 +24,26 @@ namespace Tool
         /// Gruop
         /// </summary>
         public int @group { get; set; }
+        /// <summary>
+        /// 信息
+        /// </summary>
         public string messass { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string name { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string image { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string ab { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public int id { get; set; }
     }
 
     public class ReturnClass
@@ -39,6 +60,22 @@ namespace Tool
         /// 返回数据
         /// </summary>
         public Data data { get; set; }
+    }
+
+    public class ReturnClassList
+    {
+        /// <summary>
+        /// 返回状态码
+        /// </summary>
+        public int code { get; set; }
+        /// <summary>
+        /// 返回消息
+        /// </summary>
+        public string messass { get; set; }
+        /// <summary>
+        /// 返回数据列表
+        /// </summary>
+        public List <Data> data { get; set; }
     }
 
 }

@@ -67,6 +67,14 @@ public class LoadDataAB : MonoBehaviour
             
         }),jsonData,GameManager.Instance.userData.token);
     }
+
+    /// <summary>
+    /// 广播加载选定AB包
+    /// </summary>
+    public void LoadSelectedABPackage()
+    {
+        EventCenter.Broadcast(ENventType.LoadChooseToAB);
+    }
     
     [System.Serializable]
     public class ShowABPackageReturn

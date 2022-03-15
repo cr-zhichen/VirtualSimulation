@@ -24,6 +24,7 @@ public class DisplayBoxContent : MonoBehaviour
     public LoadDataAB.ShowABPackageReturn showAbPackageReturn;
 
     public delegate void DownImageOver(Sprite sprite);
+    public delegate void AbPackageDownloadIsComplete(AssetBundle AB);
 
     // Start is called before the first frame update
     void Start()
@@ -44,11 +45,12 @@ public class DisplayBoxContent : MonoBehaviour
     {
         if (_toggle.isOn)
         {
-            GameManager.Instance.GetComponent<ForABPackage>().DownloadABPackage(showAbPackageReturn.AB,new ForABPackage.AbPackageDownloadIsComplete(
+            Debug.Log("收到广播");
+            StartCoroutine(InstantiateObject(showAbPackageReturn.AB, new AbPackageDownloadIsComplete(
                 ab =>
                 {
                     Instantiate(ab.LoadAsset<GameObject>(showAbPackageReturn.Name));
-                }));
+                })));
         }
         
     }
@@ -56,6 +58,23 @@ public class DisplayBoxContent : MonoBehaviour
     private void OnDestroy()
     {
         EventCenter.RemoveListener(ENventType.LoadChooseToAB,LoadChooseToAB);
+    }
+
+    /// <summary>
+    /// Web加载AB包
+    /// </summary>
+    /// <returns></returns>
+    IEnumerator InstantiateObject(string _url,AbPackageDownloadIsComplete abPackageDownloadIsComplete)
+    {
+        Debug.Log($"正在加载模型：{_url}");
+        string url = _url;        
+        var request 
+            = UnityEngine.Networking.UnityWebRequestAssetBundle.GetAssetBundle(url, 0);
+        yield return request.Send();
+        AssetBundle bundle = UnityEngine.Networking.DownloadHandlerAssetBundle.GetContent(request);
+
+        abPackageDownloadIsComplete(bundle);
+
     }
 
     /// <summary>

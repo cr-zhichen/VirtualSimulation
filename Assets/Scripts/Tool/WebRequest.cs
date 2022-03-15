@@ -19,6 +19,11 @@ using UnityEngine.Networking;
 
 public class WebRequest : MonoBehaviour
 {
+    private void Awake()
+    {
+        DontDestroyOnLoad(this);
+    }
+
     public delegate void HttpHelperPostGetCallbacks(long code, HttpHelperRequests request, HttpHelperResponses rsponse);
 
     //Http请求信息
@@ -125,24 +130,27 @@ public class WebRequest : MonoBehaviour
     /// <param name="fields">表单字段</param>
     /// <param name="header">请求头字典, 默认Content-Type=application/json</param>
     /// <param name="timeout"></param>
-    public void Post(string url, HttpHelperPostGetCallbacks callback, JsonData fields = null,JsonData header = null, int timeout = 5)
+    public void Post(string url, HttpHelperPostGetCallbacks callback, JsonData fields = null, string token = null,
+        JsonData header = null, int timeout = 5)
     {
-        StartCoroutine(_Post(url, callback, fields, header, timeout));
+        StartCoroutine(_Post(url, callback, fields, token,header, timeout));
     }
 
-    IEnumerator _Post(string url,HttpHelperPostGetCallbacks callback, JsonData fields = null,JsonData header = null,int timeout = 5)
+    IEnumerator _Post(string url, HttpHelperPostGetCallbacks callback, JsonData fields = null, string token = null,
+        JsonData header = null, int timeout = 5)
     {
-        using (UnityWebRequest webRequest = UnityWebRequest.Post(url,fields!=null?fields.ToJson():null))
+        byte[] bodyRaw = Encoding.UTF8.GetBytes(fields.ToJson());
+        using (UnityWebRequest webRequest = UnityWebRequest.Post(url, "POST"))
         {
-            
-            byte[] bodyRaw = Encoding.UTF8.GetBytes(fields.ToJson());
-            
+
+
             //设定超时
             webRequest.timeout = timeout;
             //设置请求头  根据实际需求来
-            webRequest.SetRequestHeader("Authorization", "Bearer "+GameManager.Instance.userData.token);
-            webRequest.uploadHandler = (UploadHandler) new UploadHandlerRaw(bodyRaw);
+            webRequest.SetRequestHeader("Authorization", "Bearer " + token);
             webRequest.SetRequestHeader("Content-Type", "application/json");
+            webRequest.uploadHandler = new UploadHandlerRaw(bodyRaw);
+            webRequest.downloadHandler = new DownloadHandlerBuffer();
             //开始与远程服务器通信
             //等待通行完成
             yield return webRequest.SendWebRequest();
@@ -161,9 +169,9 @@ public class WebRequest : MonoBehaviour
             response.text = webRequest.downloadHandler.text;
             response.bytes = webRequest.downloadHandler.data;
 
+
             //调用 委托
             callback?.Invoke(webRequest.responseCode, request, response);
-
             //结束 处理占用资源
             //尽快停止UnityWebRequest
             webRequest.Abort();

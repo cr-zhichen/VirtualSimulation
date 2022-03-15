@@ -41,9 +41,6 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-    <Analyzer Include="D:\UnityProject\VirtualSimulation\Assets\Tools\LitJson.dll" />
-  </ItemGroup>
-  <ItemGroup>
      <Compile Include="Library\PackageCache\com.unity.ide.visualstudio@2.0.14\Editor\ProjectGeneration\ProjectGenerationFlag.cs" />
      <Compile Include="Library\PackageCache\com.unity.ide.visualstudio@2.0.14\Editor\VisualStudioIntegration.cs" />
      <Compile Include="Library\PackageCache\com.unity.ide.visualstudio@2.0.14\Editor\KnownAssemblies.cs" />

@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/VirtualSimulation.unity
     guid: f9e4e17a98d57584096b9cb217495925
+  - enabled: 1
+    path: Assets/Scenes/Admin.unity
+    guid: e9a9550f3a631ca4b96b1743a58d9722
   m_configObjects: {}

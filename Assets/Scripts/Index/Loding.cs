@@ -29,7 +29,6 @@ public class Loding : MonoBehaviour
         JsonData jsonData = new JsonData();
         jsonData["Md5Email"]= Md5.ToCalculateMd5(emailText.text);
         jsonData["Md5Password"]=Md5.ToCalculateMd5(password.text);
-        
 
         var webRequest=GameManager.Instance.GetComponent<WebRequest>();
         webRequest.Post(url,new WebRequest.HttpHelperPostGetCallbacks((code, request, rsponse) =>
@@ -37,23 +36,27 @@ public class Loding : MonoBehaviour
             
             if (rsponse.code==200)
             {
-                var a=JsonConvert.DeserializeObject<rsponseOK>(rsponse.text);
+                var a=JsonConvert.DeserializeObject<Tool.ReturnClass>(rsponse.text);
                 GameManager.Instance.userData.openId = Md5.ToCalculateMd5(emailText.text);
                 GameManager.Instance.userData.email = emailText.text;
                 GameManager.Instance.userData.password = password.text;
-                GameManager.Instance.userData.token = a.token;
-                SceneManager.LoadScene("VirtualSimulation");
+                GameManager.Instance.userData.token = a.data.token;
+                GameManager.Instance.userData.@group = a.data.group;
+                if (a.data.group!=0)
+                {
+                    SceneManager.LoadScene("VirtualSimulation");
+                }
+                else
+                {
+                    SceneManager.LoadScene("Admin");
+                }
             }
             else
             {
                 Debug.LogWarning(rsponse.text);
             }
-        }),jsonData);
+        }),jsonData,GameManager.Instance.userData.token);
     }
 
-    class rsponseOK
-    {
-        public string token;
-    }
     
 }

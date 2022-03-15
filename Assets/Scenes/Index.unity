@@ -564,6 +564,7 @@ MonoBehaviour:
     email: 
     password: 
     token: 
+    group: 0
   camaraTarget:
     prefab: {fileID: 5291009779342882551, guid: 7caa87c63a9c19648b1b1c186b879232,
       type: 3}

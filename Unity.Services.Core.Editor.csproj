@@ -41,9 +41,6 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-    <Analyzer Include="D:\UnityProject\VirtualSimulation\Assets\Tools\LitJson.dll" />
-  </ItemGroup>
-  <ItemGroup>
      <Compile Include="Library\PackageCache\com.unity.services.core@1.0.1\Editor\Core\ServiceActivationPopup\Visuals\ServiceActivationPopupVisual.cs" />
      <Compile Include="Library\PackageCache\com.unity.services.core@1.0.1\Editor\Core\ProjectStateManagement\ProjectStateRequest.cs" />
      <Compile Include="Library\PackageCache\com.unity.services.core@1.0.1\Editor\Core\ProjectStateManagement\ServiceFlagRequest.cs" />
@@ -407,6 +404,9 @@
      <Reference Include="Unity.Burst.Cecil.Mdb">
      <HintPath>D:\UnityProject\VirtualSimulation\Library\PackageCache\com.unity.burst@1.6.4\Unity.Burst.CodeGen\Unity.Burst.Cecil.Mdb.dll</HintPath>
      </Reference>
+     <Reference Include="LitJson">
+     <HintPath>D:\UnityProject\VirtualSimulation\Assets\Tools\LitJson.dll</HintPath>
+     </Reference>
      <Reference Include="Unity.VisualScripting.IonicZip">
      <HintPath>D:\UnityProject\VirtualSimulation\Library\PackageCache\com.unity.visualscripting@1.7.6\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll</HintPath>
      </Reference>
@@ -428,8 +428,8 @@
      <Reference Include="Newtonsoft.Json">
      <HintPath>D:\UnityProject\VirtualSimulation\Library\PackageCache\com.unity.nuget.newtonsoft-json@3.0.1\Runtime\Newtonsoft.Json.dll</HintPath>
      </Reference>
-     <Reference Include="LitJson">
-     <HintPath>D:\UnityProject\VirtualSimulation\Assets\Tools\LitJson.dll</HintPath>
+     <Reference Include="Unity.Collections.LowLevel.ILSupport">
+     <HintPath>D:\UnityProject\VirtualSimulation\Library\PackageCache\com.unity.collections@1.0.0-pre.5\Unity.Collections.LowLevel.ILSupport\Unity.Collections.LowLevel.ILSupport.dll</HintPath>
      </Reference>
      <Reference Include="nunit.framework">
      <HintPath>D:\UnityProject\VirtualSimulation\Library\PackageCache\com.unity.ext.nunit@1.0.6\net35\unity-custom\nunit.framework.dll</HintPath>

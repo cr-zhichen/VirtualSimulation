@@ -57,6 +57,7 @@ public class GameManager : MonoBehaviour
         public string email;
         public string password;
         public string token;
+        public int group;
     }
     
     /// <summary>

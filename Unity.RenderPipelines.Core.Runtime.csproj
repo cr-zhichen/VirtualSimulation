@@ -41,9 +41,6 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-    <Analyzer Include="D:\UnityProject\VirtualSimulation\Assets\Tools\LitJson.dll" />
-  </ItemGroup>
-  <ItemGroup>
      <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@12.1.4\Runtime\Debugging\Prefabs\Scripts\DebugUIHandlerVector2.cs" />
      <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@12.1.4\Runtime\Textures\RTHandle.cs" />
      <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@12.1.4\Runtime\Camera\FreeCamera.cs" />
@@ -51,8 +48,8 @@
      <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@12.1.4\Runtime\Common\CoreProfileId.cs" />
      <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@12.1.4\Runtime\Debugging\DebugUI.Panel.cs" />
      <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@12.1.4\Runtime\Common\CoreAttributes.cs" />
-     <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@12.1.4\Runtime\RenderGraph\RenderGraphResourceTexture.cs" />
      <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@12.1.4\Runtime\Common\ObservableList.cs" />
+     <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@12.1.4\Runtime\RenderGraph\RenderGraphResourceTexture.cs" />
      <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@12.1.4\Runtime\Textures\Texture2DAtlasDynamic.cs" />
      <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@12.1.4\Runtime\Lighting\ProbeVolume\ProbeVolumeBakingProcessSettings.cs" />
      <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@12.1.4\Runtime\LookDev\IDataProvider.cs" />
@@ -62,8 +59,8 @@
      <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@12.1.4\Runtime\Lighting\ProbeVolume\ProbeReferenceVolume.cs" />
      <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@12.1.4\Runtime\Debugging\Prefabs\Scripts\DebugUIHandlerToggle.cs" />
      <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@12.1.4\Runtime\Debugging\Prefabs\Scripts\DebugUIHandlerGroup.cs" />
-     <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@12.1.4\Runtime\PostProcessing\LensFlareComponentSRP.cs" />
      <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@12.1.4\Runtime\ShaderGenerator\ShaderGeneratorAttributes.cs" />
+     <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@12.1.4\Runtime\PostProcessing\LensFlareComponentSRP.cs" />
      <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@12.1.4\Runtime\Utilities\CoreMatrixUtils.cs" />
      <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@12.1.4\Runtime\Common\CommonStructs.cs" />
      <Compile Include="Library\PackageCache\com.unity.render-pipelines.core@12.1.4\Runtime\Utilities\Blitter.cs" />
@@ -458,6 +455,9 @@
      <Reference Include="Unity.Burst.Cecil.Mdb">
      <HintPath>D:\UnityProject\VirtualSimulation\Library\PackageCache\com.unity.burst@1.6.4\Unity.Burst.CodeGen\Unity.Burst.Cecil.Mdb.dll</HintPath>
      </Reference>
+     <Reference Include="LitJson">
+     <HintPath>D:\UnityProject\VirtualSimulation\Assets\Tools\LitJson.dll</HintPath>
+     </Reference>
      <Reference Include="Unity.VisualScripting.IonicZip">
      <HintPath>D:\UnityProject\VirtualSimulation\Library\PackageCache\com.unity.visualscripting@1.7.6\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll</HintPath>
      </Reference>
@@ -479,8 +479,8 @@
      <Reference Include="Newtonsoft.Json">
      <HintPath>D:\UnityProject\VirtualSimulation\Library\PackageCache\com.unity.nuget.newtonsoft-json@3.0.1\Runtime\Newtonsoft.Json.dll</HintPath>
      </Reference>
-     <Reference Include="LitJson">
-     <HintPath>D:\UnityProject\VirtualSimulation\Assets\Tools\LitJson.dll</HintPath>
+     <Reference Include="Unity.Collections.LowLevel.ILSupport">
+     <HintPath>D:\UnityProject\VirtualSimulation\Library\PackageCache\com.unity.collections@1.0.0-pre.5\Unity.Collections.LowLevel.ILSupport\Unity.Collections.LowLevel.ILSupport.dll</HintPath>
      </Reference>
      <Reference Include="netstandard">
      <HintPath>D:\Unity\2021.2.12f1\Editor\Data\NetStandard\ref\2.1.0\netstandard.dll</HintPath>

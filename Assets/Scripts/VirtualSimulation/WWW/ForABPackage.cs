@@ -34,7 +34,7 @@ public class ForABPackage : MonoBehaviour
     /// <returns></returns>
     IEnumerator InstantiateObject(string _url,AbPackageDownloadIsComplete abPackageDownloadIsComplete)
     {
-        Debug.Log("正在加载模型");
+        Debug.Log($"正在加载模型：https://kai.chengrui.xyz/VirtualSimulation/AssetBundles/bicycle");
         string url = _url;        
         var request 
             = UnityEngine.Networking.UnityWebRequestAssetBundle.GetAssetBundle(url, 0);

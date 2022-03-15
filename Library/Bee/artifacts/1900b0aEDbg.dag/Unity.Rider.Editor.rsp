@@ -408,7 +408,6 @@
 -r:"Library/Bee/artifacts/1900b0aEDbg.dag/UnityEditor.UI.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aEDbg.dag/UnityEngine.TestRunner.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aEDbg.dag/UnityEngine.UI.ref.dll"
--analyzer:"Assets/Tools/LitJson.dll"
 "Library/PackageCache/com.unity.ide.rider@3.0.12/Rider/Editor/Discovery.cs"
 "Library/PackageCache/com.unity.ide.rider@3.0.12/Rider/Editor/EditorPluginInterop.cs"
 "Library/PackageCache/com.unity.ide.rider@3.0.12/Rider/Editor/LoggingLevel.cs"

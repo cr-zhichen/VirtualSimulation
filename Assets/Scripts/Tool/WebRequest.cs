@@ -130,13 +130,13 @@ public class WebRequest : MonoBehaviour
     /// <param name="fields">表单字段</param>
     /// <param name="header">请求头字典, 默认Content-Type=application/json</param>
     /// <param name="timeout"></param>
-    public void Post(string url, HttpHelperPostGetCallbacks callback, JsonData fields = null, string token = null,
+    public void Post(string url, HttpHelperPostGetCallbacks callback, JsonData fields, string token = null,
         JsonData header = null, int timeout = 5)
     {
         StartCoroutine(_Post(url, callback, fields, token,header, timeout));
     }
 
-    IEnumerator _Post(string url, HttpHelperPostGetCallbacks callback, JsonData fields = null, string token = null,
+    IEnumerator _Post(string url, HttpHelperPostGetCallbacks callback, JsonData fields, string token = null,
         JsonData header = null, int timeout = 5)
     {
         byte[] bodyRaw = Encoding.UTF8.GetBytes(fields.ToJson());

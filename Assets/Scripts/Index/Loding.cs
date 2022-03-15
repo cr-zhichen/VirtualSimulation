@@ -7,6 +7,8 @@
     功能：登录
 
 ******************************************/
+
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using LitJson;
@@ -55,8 +57,8 @@ public class Loding : MonoBehaviour
             {
                 Debug.LogWarning(rsponse.text);
             }
-        }),jsonData,GameManager.Instance.userData.token);
+        }),jsonData,"");
+
     }
 
-    
 }

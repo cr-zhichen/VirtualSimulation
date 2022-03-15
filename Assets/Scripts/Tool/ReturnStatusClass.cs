@@ -22,6 +22,7 @@ namespace Tool
         /// Gruop
         /// </summary>
         public int @group { get; set; }
+        public string messass { get; set; }
     }
 
     public class ReturnClass

@@ -102,8 +102,8 @@
      <Compile Include="Library\PackageCache\com.unity.timeline@1.6.3\Editor\treeview\Drawers\TrackDrawer.cs" />
      <Compile Include="Library\PackageCache\com.unity.timeline@1.6.3\Editor\treeview\Snapping\SnapEngine.cs" />
      <Compile Include="Library\PackageCache\com.unity.timeline@1.6.3\Editor\Window\TimelineWindow_PlayableLookup.cs" />
-     <Compile Include="Library\PackageCache\com.unity.timeline@1.6.3\Editor\Utilities\Scopes\GUIViewportScope.cs" />
      <Compile Include="Library\PackageCache\com.unity.timeline@1.6.3\Editor\Window\TimelineWindow_ActiveTimeline.cs" />
+     <Compile Include="Library\PackageCache\com.unity.timeline@1.6.3\Editor\Utilities\Scopes\GUIViewportScope.cs" />
      <Compile Include="Library\PackageCache\com.unity.timeline@1.6.3\Editor\Attributes\TimelineShortcutAttribute.cs" />
      <Compile Include="Library\PackageCache\com.unity.timeline@1.6.3\Editor\treeview\Drawers\Layers\ClipsLayer.cs" />
      <Compile Include="Library\PackageCache\com.unity.timeline@1.6.3\Editor\Manipulators\TimeIndicator.cs" />
@@ -114,9 +114,9 @@
      <Compile Include="Library\PackageCache\com.unity.timeline@1.6.3\Editor\MenuPriority.cs" />
      <Compile Include="Library\PackageCache\com.unity.timeline@1.6.3\Editor\Animation\ClipCurveEditor.cs" />
      <Compile Include="Library\PackageCache\com.unity.timeline@1.6.3\Editor\Actions\TimelineAction.cs" />
-     <Compile Include="Library\PackageCache\com.unity.timeline@1.6.3\Editor\Actions\TrackActions.cs" />
      <Compile Include="Library\PackageCache\com.unity.timeline@1.6.3\Editor\treeview\TimelineClipHandle.cs" />
      <Compile Include="Library\PackageCache\com.unity.timeline@1.6.3\Editor\Items\MarkerItem.cs" />
+     <Compile Include="Library\PackageCache\com.unity.timeline@1.6.3\Editor\Actions\TrackActions.cs" />
      <Compile Include="Library\PackageCache\com.unity.timeline@1.6.3\Editor\Manipulators\AddDelete\AddDeleteItemModeMix.cs" />
      <Compile Include="Library\PackageCache\com.unity.timeline@1.6.3\Editor\Window\TimelineWindow.cs" />
      <Compile Include="Library\PackageCache\com.unity.timeline@1.6.3\Editor\Signals\Styles.cs" />
@@ -569,6 +569,9 @@
      <Reference Include="UnityEditor.WindowsStandalone.Extensions">
      <HintPath>D:\Unity\2021.2.12f1\Editor\Data\PlaybackEngines\WindowsStandaloneSupport\UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
      </Reference>
+     <Reference Include="Unity.Collections.LowLevel.ILSupport">
+     <HintPath>D:\UnityProject\VirtualSimulation\Library\PackageCache\com.unity.collections@1.0.0-pre.5\Unity.Collections.LowLevel.ILSupport\Unity.Collections.LowLevel.ILSupport.dll</HintPath>
+     </Reference>
      <Reference Include="Unity.Plastic.Newtonsoft.Json">
      <HintPath>D:\UnityProject\VirtualSimulation\Library\PackageCache\com.unity.collab-proxy@1.15.12\Lib\Editor\PlasticSCM\Unity.Plastic.Newtonsoft.Json.dll</HintPath>
      </Reference>
@@ -610,9 +613,6 @@
      </Reference>
      <Reference Include="Newtonsoft.Json">
      <HintPath>D:\UnityProject\VirtualSimulation\Library\PackageCache\com.unity.nuget.newtonsoft-json@3.0.1\Runtime\Newtonsoft.Json.dll</HintPath>
-     </Reference>
-     <Reference Include="Unity.Collections.LowLevel.ILSupport">
-     <HintPath>D:\UnityProject\VirtualSimulation\Library\PackageCache\com.unity.collections@1.0.0-pre.5\Unity.Collections.LowLevel.ILSupport\Unity.Collections.LowLevel.ILSupport.dll</HintPath>
      </Reference>
      <Reference Include="nunit.framework">
      <HintPath>D:\UnityProject\VirtualSimulation\Library\PackageCache\com.unity.ext.nunit@1.0.6\net35\unity-custom\nunit.framework.dll</HintPath>

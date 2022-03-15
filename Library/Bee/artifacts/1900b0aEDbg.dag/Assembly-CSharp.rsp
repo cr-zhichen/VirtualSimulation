@@ -375,6 +375,7 @@
 "Assets/Scripts/Index/Loding.cs"
 "Assets/Scripts/Tool/Md5.cs"
 "Assets/Scripts/Tool/ReturnStatusClass.cs"
+"Assets/Scripts/Tool/Screenshots.cs"
 "Assets/Scripts/Tool/WebRequest.cs"
 "Assets/Scripts/VirtualSimulation/CameraCtrl.cs"
 "Assets/Scripts/VirtualSimulation/Ground.cs"

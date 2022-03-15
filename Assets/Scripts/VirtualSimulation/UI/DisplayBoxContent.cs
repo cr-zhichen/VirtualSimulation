@@ -31,7 +31,6 @@ public class DisplayBoxContent : MonoBehaviour
         _toggle = GetComponent<Toggle>();
         StartCoroutine(GetTexture(new DownImageOver(sprite =>
         {
-            
             bg.sprite = sprite;
         })));
     }
@@ -43,11 +42,15 @@ public class DisplayBoxContent : MonoBehaviour
 
     private void LoadChooseToAB()
     {
-        GameManager.Instance.GetComponent<ForABPackage>().DownloadABPackage(showAbPackageReturn.AB,new ForABPackage.AbPackageDownloadIsComplete(
-            ab =>
-            {
-                Instantiate(ab.LoadAsset<GameObject>(showAbPackageReturn.Name));
-            }));
+        if (_toggle.isOn)
+        {
+            GameManager.Instance.GetComponent<ForABPackage>().DownloadABPackage(showAbPackageReturn.AB,new ForABPackage.AbPackageDownloadIsComplete(
+                ab =>
+                {
+                    Instantiate(ab.LoadAsset<GameObject>(showAbPackageReturn.Name));
+                }));
+        }
+        
     }
 
     private void OnDestroy()

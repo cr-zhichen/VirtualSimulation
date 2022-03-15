@@ -525,6 +525,7 @@ GameObject:
   - component: {fileID: 373595708}
   - component: {fileID: 373595709}
   - component: {fileID: 373595710}
+  - component: {fileID: 373595711}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -602,6 +603,18 @@ MonoBehaviour:
     groundGameObject: {fileID: 0}
     groundSpeed: 0.01
 --- !u!114 &373595710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 373595707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f8f91dfc7f1d714ba24dc81eacb276c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &373595711
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1627,7 +1640,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1990344508}
         m_TargetAssemblyTypeName: Loding, Assembly-CSharp
-        m_MethodName: StartLoding
+        m_MethodName: StartLoading
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

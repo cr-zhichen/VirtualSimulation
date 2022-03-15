@@ -26,6 +26,8 @@ public class WebRequest : MonoBehaviour
 
     public delegate void HttpHelperPostGetCallbacks(long code, HttpHelperRequests request, HttpHelperResponses rsponse);
 
+    public delegate void DownloadIsComplete();
+
     //Http请求信息
     [Serializable]
     public struct HttpHelperRequests
@@ -142,8 +144,7 @@ public class WebRequest : MonoBehaviour
         byte[] bodyRaw = Encoding.UTF8.GetBytes(fields.ToJson());
         using (UnityWebRequest webRequest = UnityWebRequest.Post(url, "POST"))
         {
-
-
+            
             //设定超时
             webRequest.timeout = timeout;
             //设置请求头  根据实际需求来
@@ -181,5 +182,7 @@ public class WebRequest : MonoBehaviour
             webRequest.Dispose();
         }
     }
+    
+    
 
 }

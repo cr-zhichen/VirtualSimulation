@@ -12,13 +12,16 @@ using System.Collections.Generic;
 using LitJson;
 using Newtonsoft.Json;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LoadDataAB : MonoBehaviour
 {
 
     private string url = "https://localhost:7129/api/Users/ShowABPackage";
 
-    public List<ShowABPackageReturn> ShowAbPackageReturns;
+    public List<ShowABPackageReturn> showAbPackageReturns;
+
+    public GameObject displayBoxContent;
 
     // Start is called before the first frame update
     void Start()
@@ -26,6 +29,9 @@ public class LoadDataAB : MonoBehaviour
         Load();
     }
 
+    /// <summary>
+    /// 加载链接
+    /// </summary>
     public void Load()
     {
 
@@ -43,19 +49,21 @@ public class LoadDataAB : MonoBehaviour
 
             foreach (var data in a.data)
             {
-                ShowAbPackageReturns.Add(new ShowABPackageReturn
+                var _showABPackageReturn =new ShowABPackageReturn
                 {
                     Id = data.id,
                     Name = data.name,
-                    Image = "https://kai.chengrui.xyz/"+data.image,
-                    AB = "https://kai.chengrui.xyz/"+data.ab,
+                    Image = "https://kai.chengrui.xyz/" + data.image,
+                    AB = "https://kai.chengrui.xyz/" + data.ab,
                     Group = data.group
-                
-                });
+                };
+                showAbPackageReturns.Add(_showABPackageReturn);
+
+                GameObject g = Instantiate(displayBoxContent, this.transform);
+                g.GetComponent<Toggle>().group = this.GetComponent<ToggleGroup>();
+                g.GetComponent<DisplayBoxContent>().showAbPackageReturn = _showABPackageReturn;
+
             }
-            
-            
-            
             
         }),jsonData,GameManager.Instance.userData.token);
     }

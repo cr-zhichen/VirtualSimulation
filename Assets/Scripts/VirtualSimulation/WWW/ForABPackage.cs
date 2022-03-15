@@ -14,18 +14,24 @@ using UnityEngine;
 public class ForABPackage : MonoBehaviour
 {
 
-    private delegate void AbPackageDownloadIsComplete(AssetBundle AB);
+    public delegate void AbPackageDownloadIsComplete(AssetBundle AB);
     
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(InstantiateObject("https://kai.chengrui.xyz/VirtualSimulation/AssetBundles/bicycle",
-            new AbPackageDownloadIsComplete(
-                ab =>
-                {
-                    Instantiate(ab.LoadAsset<GameObject>("自行车 Variant"));
-                    Debug.Log("加载完成");
-                })));
+        // StartCoroutine(InstantiateObject("https://kai.chengrui.xyz/VirtualSimulation/AssetBundles/bicycle",
+        //     new AbPackageDownloadIsComplete(
+        //         ab =>
+        //         {
+        //             Instantiate(ab.LoadAsset<GameObject>("自行车 Variant"));
+        //             Debug.Log("加载完成");
+        //         })));
+    }
+
+    
+    public void DownloadABPackage(string _url,AbPackageDownloadIsComplete abPackageDownloadIsComplete)
+    {
+        StartCoroutine(_url, abPackageDownloadIsComplete);
     }
 
     /// <summary>
@@ -34,7 +40,7 @@ public class ForABPackage : MonoBehaviour
     /// <returns></returns>
     IEnumerator InstantiateObject(string _url,AbPackageDownloadIsComplete abPackageDownloadIsComplete)
     {
-        Debug.Log($"正在加载模型：https://kai.chengrui.xyz/VirtualSimulation/AssetBundles/bicycle");
+        Debug.Log($"正在加载模型：{_url}");
         string url = _url;        
         var request 
             = UnityEngine.Networking.UnityWebRequestAssetBundle.GetAssetBundle(url, 0);

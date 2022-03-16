@@ -11,16 +11,20 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using LitJson;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class ShowWords : MonoBehaviour
 {
-    private Text _text;
+    public Text _text;
+
+    
     private void Awake()
     {
         _text = GetComponent<Text>();
         EventCenter.AddListener<string>(ENventType.ShowWords,ShowText);
+        EventCenter.AddListener(ENventType.UpdateData,UpdateData);
     }
 
     private void ShowText(string s)
@@ -28,8 +32,17 @@ public class ShowWords : MonoBehaviour
         _text.text = s;
     }
 
+    private void UpdateData()
+    {
+        _text.text = "";
+    }
+
     private void OnDestroy()
     {
         EventCenter.RemoveListener<string>(ENventType.ShowWords,ShowText);
+        EventCenter.RemoveListener(ENventType.UpdateData,UpdateData);
     }
+
+    
+    
 }

@@ -28,7 +28,7 @@ public class UploadABPackage : MonoBehaviour
 
 	public RenderTexture renderTexture;
 
-	public byte[] ABbyer;
+	public byte[] ABbyte;
 	public string ABname;
 
 	public AssetBundle AB;
@@ -81,14 +81,14 @@ public class UploadABPackage : MonoBehaviour
 					{
 						ABgameobject= Instantiate(ab.LoadAsset<GameObject>(name[0]));
 						AB = ab;
-						ABbyer = bytesList[0];
+						ABbyte = bytesList[0];
 						ABname = name[0];
-
+						
 					}
 					catch (Exception e)
 					{
 						Debug.Log("请加载正确AB包，并保证AB包内预制体与包名相同");
-						ABbyer = null;
+						ABbyte = null;
 						ABname = null;
 						Console.WriteLine(e);
 						throw;
@@ -106,7 +106,7 @@ public class UploadABPackage : MonoBehaviour
 	public void Upload()
 	{
 		
-		if (ABbyer != null && ABname != null && ABgameobject != null)
+		if (ABbyte != null && ABname != null && ABgameobject != null)
 		{
 
 			string group;
@@ -127,7 +127,7 @@ public class UploadABPackage : MonoBehaviour
 			jsonData["adminPassword"] =  Md5.ToCalculateMd5(GameManager.Instance.userData.password);
 			jsonData["name"] = ABname;
 			jsonData["image"] = Screenshots.StartScreenshots(renderTexture);
-			jsonData["ab"] = Convert.ToBase64String(ABbyer);
+			jsonData["ab"] = Convert.ToBase64String(ABbyte);
 			jsonData["group"] = group;
 				
 				

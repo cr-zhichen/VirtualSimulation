@@ -54,6 +54,9 @@ public class UploadABPackage : MonoBehaviour
 		EventCenter.RemoveListener(ENventType.UpdateAB,UpdateAB);
 	}
 
+	/// <summary>
+	/// 打开本地AB包
+	/// </summary>
 	public void Open()
 	{
 		FileBrowser.AddQuickLink( "Users", "C:\\Users", null );
@@ -94,6 +97,9 @@ public class UploadABPackage : MonoBehaviour
 		})));
 	}
 	
+	/// <summary>
+	/// 上传AB包
+	/// </summary>
 	public void Upload()
 	{
 		
@@ -121,6 +127,8 @@ public class UploadABPackage : MonoBehaviour
 		}
 
 	}
+
+	
 	
 	/// <summary>
 	/// Web加载AB包

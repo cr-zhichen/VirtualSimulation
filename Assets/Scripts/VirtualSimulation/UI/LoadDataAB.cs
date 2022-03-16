@@ -44,6 +44,7 @@ public class LoadDataAB : MonoBehaviour
     {
         foreach (var displayBox in displayBoxContentList)
         {
+            displayBox.GetComponent<DisplayBoxContent>().UpdateAB();
             Destroy(displayBox);
         }
 
@@ -73,7 +74,7 @@ public class LoadDataAB : MonoBehaviour
             Debug.Log(rsponse.text);
             var a=JsonConvert.DeserializeObject<Tool.ReturnClassList>(rsponse.text);
             
-            Debug.Log(a.data);
+            // Debug.Log(a.data);
 
             foreach (var data in a.data)
             {

@@ -49,7 +49,7 @@ public class DisplayBoxContent : MonoBehaviour
         EventCenter.AddListener(ENventType.RemoveABPackage,RemoveABPackage);
     }
     
-    private void UpdateAB()
+    public void UpdateAB()
     {
         if (ABgameobject == null)
         {

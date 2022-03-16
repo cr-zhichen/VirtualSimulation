@@ -29,6 +29,7 @@ public class RegistrationModify : MonoBehaviour
     private void Awake()
     {
         EventCenter.AddListener<string,string>(ENventType.SelectedUserInformation,SelectedUserInformation);
+        EventCenter.AddListener(ENventType.UpdateData,UpdateData);
     }
 
     private void SelectedUserInformation(string _email,string _group)
@@ -38,9 +39,17 @@ public class RegistrationModify : MonoBehaviour
         @group.text = _group;
     }
 
+    private void UpdateData()
+    {
+        email.text = null;
+        password.text = null;
+        @group.text = null;
+    }
+
     private void OnDestroy()
     {
         EventCenter.RemoveListener<string,string>(ENventType.SelectedUserInformation,SelectedUserInformation);
+        EventCenter.AddListener(ENventType.UpdateData,UpdateData);
     }
 
     /// <summary>

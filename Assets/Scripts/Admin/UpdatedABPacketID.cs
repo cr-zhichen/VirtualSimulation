@@ -19,8 +19,35 @@ public class UpdatedABPacketID : MonoBehaviour
 
     private string _url="https://localhost:7129/api/Users/UpdateAB";
 
+    public InputField _ABname;
     public InputField _id;
     public InputField @group;
+    
+    private void Awake()
+    {
+        EventCenter.AddListener<long,string,int>(ENventType.ShowWords,ShowText);
+        EventCenter.AddListener(ENventType.UpdateData,UpdateData);
+    }
+
+    private void ShowText(long id,string s,int _group)
+    {
+        _ABname.text = s;
+        _id.text = id.ToString();
+        @group.text = _group.ToString();
+    }
+
+    private void UpdateData()
+    {
+        _id.text = null;
+        _ABname.text = null;
+        @group.text = null;
+    }
+
+    private void OnDestroy()
+    {
+        EventCenter.RemoveListener<long,string,int>(ENventType.ShowWords,ShowText);
+        EventCenter.RemoveListener(ENventType.UpdateData,UpdateData);
+    }
     
     /// <summary>
     /// 更新用户组

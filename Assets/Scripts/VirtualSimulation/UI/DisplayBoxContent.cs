@@ -134,9 +134,7 @@ public class DisplayBoxContent : MonoBehaviour
     {
         if (b)
         {
-            EventCenter.Broadcast<string>(ENventType.ShowWords, $"id={showAbPackageReturn.Id}\n" +
-                                                        $"AB包名称={showAbPackageReturn.Name}\n" +
-                                                        $"所属用户组={showAbPackageReturn.Group}");
+            EventCenter.Broadcast<long,string,int>(ENventType.ShowWords, showAbPackageReturn.Id,showAbPackageReturn.Name,showAbPackageReturn.Group);
         }
     }
     

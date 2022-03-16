@@ -5,4 +5,5 @@ public enum ENventType
     RemoveABPackage,//删除选择的AB包
     UpdateData,//更新数据
     UpdateAB,//更新AB包
+    ShowWords,//展示文字信息<String>
 }

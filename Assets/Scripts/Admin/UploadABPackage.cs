@@ -16,6 +16,7 @@ using JetBrains.Annotations;
 using LitJson;
 using SimpleFileBrowser;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UploadABPackage : MonoBehaviour
 {
@@ -32,6 +33,8 @@ public class UploadABPackage : MonoBehaviour
 
 	public AssetBundle AB;
 	public GameObject ABgameobject;
+
+	public InputField inputField;//输入用户组
 
 	private void Awake()
 	{
@@ -103,8 +106,21 @@ public class UploadABPackage : MonoBehaviour
 	public void Upload()
 	{
 		
-		if (ABbyer != null && ABname != null && ABgameobject != null) 
+		if (ABbyer != null && ABname != null && ABgameobject != null)
 		{
+
+			string group;
+			
+			//判断用户组是否为空
+			if (String.IsNullOrEmpty(inputField.text))
+			{
+				group = "1";
+			}
+			else
+			{
+				group = inputField.text;
+			}
+			
 			var webRequest=GameManager.Instance.GetComponent<WebRequest>();
 			JsonData jsonData = new JsonData();
 			jsonData["adminOpenId"] = GameManager.Instance.userData.openId;
@@ -112,7 +128,7 @@ public class UploadABPackage : MonoBehaviour
 			jsonData["name"] = ABname;
 			jsonData["image"] = Screenshots.StartScreenshots(renderTexture);
 			jsonData["ab"] = Convert.ToBase64String(ABbyer);
-			jsonData["group"] = "1";
+			jsonData["group"] = group;
 				
 				
 			webRequest.Post(url,new WebRequest.HttpHelperPostGetCallbacks((code, request, rsponse) =>

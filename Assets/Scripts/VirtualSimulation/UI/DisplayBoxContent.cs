@@ -123,6 +123,21 @@ public class DisplayBoxContent : MonoBehaviour
     }
 
     /// <summary>
+    /// 点击后显示文字信息
+    /// </summary>
+    /// <param name="b"></param>
+    public void ShowWords(bool b)
+    {
+        if (b)
+        {
+            EventCenter.Broadcast(ENventType.ShowWords,$"id={showAbPackageReturn.Id}\n" +
+                                                       $"AB包名称={showAbPackageReturn.Name}\n" +
+                                                       $"所属用户组={showAbPackageReturn.Group}");
+        }
+    }
+    
+
+    /// <summary>
     /// Web加载AB包
     /// </summary>
     /// <returns></returns>

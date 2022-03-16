@@ -19,5 +19,8 @@ public class Refresh : MonoBehaviour
     public void StartRefresh()
     {
         EventCenter.Broadcast(ENventType.UpdateData);
+        EventCenter.Broadcast(ENventType.CameraMove, 
+            GameManager.Instance.camaraTransform[0].camaraPos,
+            GameManager.Instance.camaraTransform[0].camaraRot);
     }
 }

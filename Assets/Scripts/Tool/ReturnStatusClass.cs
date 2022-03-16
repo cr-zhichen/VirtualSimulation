@@ -44,6 +44,14 @@ namespace Tool
         /// 
         /// </summary>
         public int id { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string openID { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string email { get; set; }
     }
 
     public class ReturnClass

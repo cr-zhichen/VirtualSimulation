@@ -370,6 +370,8 @@
 "Assets/Scripts/Admin/ShowWords.cs"
 "Assets/Scripts/Admin/UpdatedABPacketID.cs"
 "Assets/Scripts/Admin/UploadABPackage.cs"
+"Assets/Scripts/Admin/UserDataBox.cs"
+"Assets/Scripts/Admin/UserManagement.cs"
 "Assets/Scripts/EventCenter/CallBack.cs"
 "Assets/Scripts/EventCenter/EventCenter.cs"
 "Assets/Scripts/EventCenter/EventType.cs"

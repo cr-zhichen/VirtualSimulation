@@ -367,6 +367,7 @@
 -r:"Library/Bee/artifacts/1900b0aEDbg.dag/Unity.VSCode.Editor.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aEDbg.dag/UnityEditor.UI.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aEDbg.dag/UnityEngine.UI.ref.dll"
+"Assets/Scripts/Admin/RegistrationModify.cs"
 "Assets/Scripts/Admin/ShowWords.cs"
 "Assets/Scripts/Admin/UpdatedABPacketID.cs"
 "Assets/Scripts/Admin/UploadABPackage.cs"

@@ -24,4 +24,17 @@ public class UserDataBox : MonoBehaviour
     {
         _toggle = GetComponent<Toggle>();
     }
+
+    /// <summary>
+    /// Toggle值改变时
+    /// </summary>
+    /// <param name="b"></param>
+    public void Select(bool b)
+    {
+        if (b)
+        {
+            EventCenter.Broadcast<string,string>(ENventType.SelectedUserInformation,email.text,@group.text);
+        }
+    }
+    
 }

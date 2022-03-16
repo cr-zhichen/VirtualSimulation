@@ -25,7 +25,39 @@ public class UserManagement : MonoBehaviour
 
     public List<UserData> UserDatas = new List<UserData>();
 
+    private void Awake()
+    {
+        EventCenter.AddListener(ENventType.UpdateData,UpdateAllUserData);
+        EventCenter.AddListener(ENventType.UpdateAllUserData,UpdateAllUserData);
+    }
+
+    private void UpdateAllUserData()
+    {
+        foreach (var _user in users)
+        {
+            Destroy(_user);
+        }
+
+        users = new List<GameObject>();
+        UserDatas = new List<UserData>();
+        LoadingUserData();
+    }
+
+    private void OnDestroy()
+    {
+        EventCenter.RemoveListener(ENventType.UpdateData,UpdateAllUserData);
+        EventCenter.RemoveListener(ENventType.UpdateAllUserData,UpdateAllUserData);
+    }
+
     private void Start()
+    {
+        LoadingUserData();
+    }
+
+    /// <summary>
+    /// 加载用户数据
+    /// </summary>
+    private void LoadingUserData()
     {
         var webRequest= GameManager.Instance.GetComponent<WebRequest>();
 

@@ -23,6 +23,8 @@ public class RegistrationModify : MonoBehaviour
     public InputField group;
     
     private string _url = "https://localhost:7129/api/Users/Register";
+
+    private string _delUserUrl = "https://localhost:7129/api/Users/Cancellation";
     
     private void Awake()
     {
@@ -41,6 +43,9 @@ public class RegistrationModify : MonoBehaviour
         EventCenter.RemoveListener<string,string>(ENventType.SelectedUserInformation,SelectedUserInformation);
     }
 
+    /// <summary>
+    /// 注册或修改用户
+    /// </summary>
     public void StartRegistrationModify()
     {
         var webRequest= GameManager.Instance.GetComponent<WebRequest>();
@@ -58,5 +63,25 @@ public class RegistrationModify : MonoBehaviour
             EventCenter.Broadcast(ENventType.UpdateAllUserData);
         }),jsonData,GameManager.Instance.userData.token);
 
+    }
+
+    /// <summary>
+    /// 删除用户
+    /// </summary>
+    public void DeleteUser()
+    {
+        var webRequest= GameManager.Instance.GetComponent<WebRequest>();
+
+        JsonData jsonData = new JsonData();
+        jsonData["adminOpenId"] = GameManager.Instance.userData.openId;
+        jsonData["adminPassword"] =  Md5.ToCalculateMd5(GameManager.Instance.userData.password);
+        jsonData["UserOpenID"] =  Md5.ToCalculateMd5(email.text);
+        
+        webRequest.Post(_delUserUrl,new WebRequest.HttpHelperPostGetCallbacks((code, request, rsponse) =>
+        {
+            Debug.Log(rsponse.text);
+            EventCenter.Broadcast(ENventType.UpdateAllUserData);
+        }),jsonData,GameManager.Instance.userData.token);
+        
     }
 }

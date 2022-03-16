@@ -26,6 +26,9 @@ public class DisplayBoxContent : MonoBehaviour
     public delegate void DownImageOver(Sprite sprite);
     public delegate void AbPackageDownloadIsComplete(AssetBundle AB);
 
+    private AssetBundle AB;
+    private GameObject ABgameobject;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -39,25 +42,50 @@ public class DisplayBoxContent : MonoBehaviour
     private void Awake()
     {
         EventCenter.AddListener(ENventType.LoadChooseToAB,LoadChooseToAB);
+        EventCenter.AddListener(ENventType.UpdateAB,UpdateAB);
+    }
+    
+    private void UpdateAB()
+    {
+        if (ABgameobject == null)
+        {
+            return;
+        }
+        Destroy(ABgameobject);
+        //卸载AB包
+        AB.Unload(true);
+        // Destroy(AB);
     }
 
     private void LoadChooseToAB()
     {
         if (_toggle.isOn)
         {
-            Debug.Log("收到广播");
-            StartCoroutine(InstantiateObject(showAbPackageReturn.AB, new AbPackageDownloadIsComplete(
-                ab =>
-                {
-                    Instantiate(ab.LoadAsset<GameObject>(showAbPackageReturn.Name));
-                })));
+            
+            if (ABgameobject == null)
+            {
+                EventCenter.Broadcast(ENventType.UpdateAB);
+                Debug.Log("收到加载广播");
+                StartCoroutine(InstantiateObject(showAbPackageReturn.AB, new AbPackageDownloadIsComplete(
+                    ab =>
+                    {
+                        AB = ab;
+                        ABgameobject=Instantiate(ab.LoadAsset<GameObject>(showAbPackageReturn.Name));
+                    })));
+            }
+            else
+            {
+                Debug.Log("模型以被实例化");
+            }
+            
         }
-        
+
     }
 
     private void OnDestroy()
     {
         EventCenter.RemoveListener(ENventType.LoadChooseToAB,LoadChooseToAB);
+        EventCenter.RemoveListener(ENventType.UpdateAB,UpdateAB);
     }
 
     /// <summary>

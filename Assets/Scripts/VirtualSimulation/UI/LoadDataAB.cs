@@ -7,6 +7,8 @@
     功能：从服务器获取AB包列表
 
 ******************************************/
+
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using LitJson;
@@ -22,11 +24,37 @@ public class LoadDataAB : MonoBehaviour
     public List<ShowABPackageReturn> showAbPackageReturns;
 
     public GameObject displayBoxContent;
+    public List<GameObject> displayBoxContentList = new List<GameObject>();
 
     // Start is called before the first frame update
     void Start()
     {
         Load();
+    }
+
+    private void Awake()
+    {
+        EventCenter.AddListener(ENventType.UpdateData,UpdateData);
+    }
+
+    /// <summary>
+    /// 更新链接
+    /// </summary>
+    public void UpdateData()
+    {
+        foreach (var displayBox in displayBoxContentList)
+        {
+            Destroy(displayBox);
+        }
+
+        displayBoxContentList = new List<GameObject>();
+        
+        Load();
+    }
+
+    private void OnDestroy()
+    {
+        EventCenter.RemoveListener(ENventType.UpdateData,UpdateData);
     }
 
     /// <summary>
@@ -60,6 +88,7 @@ public class LoadDataAB : MonoBehaviour
                 showAbPackageReturns.Add(_showABPackageReturn);
 
                 GameObject g = Instantiate(displayBoxContent, this.transform);
+                displayBoxContentList.Add(g);
                 g.GetComponent<Toggle>().group = this.GetComponent<ToggleGroup>();
                 g.GetComponent<DisplayBoxContent>().showAbPackageReturn = _showABPackageReturn;
 

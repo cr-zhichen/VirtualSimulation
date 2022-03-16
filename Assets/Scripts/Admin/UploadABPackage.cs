@@ -20,41 +20,119 @@ using UnityEngine;
 public class UploadABPackage : MonoBehaviour
 {
 
-	public delegate void Complete(bool b,[CanBeNull] List<string> name,[CanBeNull] List<Byte[]> bytesList);
+	public delegate void Complete(bool b,[CanBeNull] List<string> name,[CanBeNull] List<Byte[]> bytesList,[CanBeNull] List<string> fill);
+	public delegate void AbPackageDownloadIsComplete(AssetBundle AB);
 	
 	private string url = "https://localhost:7129/api/Users/AddAB";
 
 	public RenderTexture renderTexture;
+
+	public byte[] ABbyer;
+	public string ABname;
+
+	public AssetBundle AB;
+	public GameObject ABgameobject;
+
+	private void Awake()
+	{
+		EventCenter.AddListener(ENventType.UpdateAB,UpdateAB);
+	}
+
+	private void UpdateAB()
+	{
+		if (AB!=null &&ABgameobject != null )
+		{
+			Destroy(ABgameobject);
+			//卸载AB包
+			AB.Unload(true);
+			Destroy(AB);
+		}
+	}
+
+	private void OnDestroy()
+	{
+		EventCenter.RemoveListener(ENventType.UpdateAB,UpdateAB);
+	}
+
+	public void Open()
+	{
+		FileBrowser.AddQuickLink( "Users", "C:\\Users", null );
+		StartCoroutine(ShowLoadDialogCoroutine(new Complete((b, name, bytesList,fill) =>
+		{
+			if (b)
+			{
+				EventCenter.Broadcast(ENventType.UpdateAB);
+
+				if (bytesList.Count > 1)
+				{
+					Debug.LogWarning("只可选定一个AB包文件");
+					return;
+				}
+
+				StartCoroutine(InstantiateObject(fill[0], new AbPackageDownloadIsComplete(ab =>
+				{
+					try
+					{
+						ABgameobject= Instantiate(ab.LoadAsset<GameObject>(name[0]));
+						AB = ab;
+						ABbyer = bytesList[0];
+						ABname = name[0];
+
+					}
+					catch (Exception e)
+					{
+						Debug.Log("请加载正确AB包，并保证AB包内预制体与包名相同");
+						ABbyer = null;
+						ABname = null;
+						Console.WriteLine(e);
+						throw;
+					}
+				})));
+			}
+
+
+		})));
+	}
 	
 	public void Upload()
 	{
-		var webRequest=GameManager.Instance.GetComponent<WebRequest>();
 		
-		FileBrowser.AddQuickLink( "Users", "C:\\Users", null );
-		StartCoroutine( ShowLoadDialogCoroutine(new Complete((b,name, bytesList) =>
+		if (ABbyer != null && ABname != null && ABgameobject != null) 
 		{
-			Debug.Log(b);
-			for (int i = 0; i < bytesList.Count; i++)
+			var webRequest=GameManager.Instance.GetComponent<WebRequest>();
+			JsonData jsonData = new JsonData();
+			jsonData["adminOpenId"] = GameManager.Instance.userData.openId;
+			jsonData["adminPassword"] =  Md5.ToCalculateMd5(GameManager.Instance.userData.password);
+			jsonData["name"] = ABname;
+			jsonData["image"] = Screenshots.StartScreenshots(renderTexture);
+			jsonData["ab"] = Convert.ToBase64String(ABbyer);
+			jsonData["group"] = "1";
+				
+				
+			webRequest.Post(url,new WebRequest.HttpHelperPostGetCallbacks((code, request, rsponse) =>
 			{
-				Debug.Log(bytesList[i]);
-				Debug.Log(name[i]);
-				
-				JsonData jsonData = new JsonData();
-				jsonData["adminOpenId"] = GameManager.Instance.userData.openId;
-				jsonData["adminPassword"] =  Md5.ToCalculateMd5(GameManager.Instance.userData.password);
-				jsonData["name"] = name[i];
-				jsonData["image"] = Screenshots.StartScreenshots(renderTexture);
-				jsonData["ab"] = Convert.ToBase64String(bytesList[i]);
-				jsonData["group"] = "1";
-				
-				
-				webRequest.Post(url,new WebRequest.HttpHelperPostGetCallbacks((code, request, rsponse) =>
-				{
-					Debug.Log(rsponse.text);
-				}),jsonData,GameManager.Instance.userData.token);
-				
-			}
-		} )) );
+				Debug.Log(rsponse.text);
+				EventCenter.Broadcast(ENventType.UpdateData);
+			}),jsonData,GameManager.Instance.userData.token);
+		}
+
+	}
+	
+	/// <summary>
+	/// Web加载AB包
+	/// </summary>
+	/// <returns></returns>
+	IEnumerator InstantiateObject(string _url,AbPackageDownloadIsComplete abPackageDownloadIsComplete)
+	{
+		
+		Debug.Log($"正在加载模型：{_url}");
+		string url = _url;        
+		var request 
+			= UnityEngine.Networking.UnityWebRequestAssetBundle.GetAssetBundle(url, 0);
+		yield return request.Send();
+		AssetBundle bundle = UnityEngine.Networking.DownloadHandlerAssetBundle.GetContent(request);
+
+		abPackageDownloadIsComplete(bundle);
 
 	}
 	
@@ -75,6 +153,7 @@ public class UploadABPackage : MonoBehaviour
 		{
 			List<Byte[]> bytesList = new List<byte[]>();
 			List<string> namelist = new List<string>();
+			List<string> Fill = new List<string>();
 
 			// Print paths of the selected files (FileBrowser.Result) (null, if FileBrowser.Success is false)
 			for (int i = 0; i < FileBrowser.Result.Length; i++)
@@ -90,13 +169,14 @@ public class UploadABPackage : MonoBehaviour
 				bytesList.Add(bytes);
 				// namelist.Add(FileBrowser.Result[i]);
 				namelist.Add(System.IO.Path.GetFileName(FileBrowser.Result[i]));
+				Fill.Add(FileBrowser.Result[i]);
 			}
-			complete(FileBrowser.Success,namelist,bytesList);
+			complete(FileBrowser.Success,namelist,bytesList,Fill);
 
 		}
 		else
 		{
-			complete(FileBrowser.Success,null,null);
+			complete(FileBrowser.Success,null,null,null);
 		}
 		
 	}

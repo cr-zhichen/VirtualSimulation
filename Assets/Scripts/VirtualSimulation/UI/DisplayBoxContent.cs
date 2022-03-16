@@ -11,6 +11,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using LitJson;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
@@ -29,6 +30,8 @@ public class DisplayBoxContent : MonoBehaviour
     private AssetBundle AB;
     private GameObject ABgameobject;
 
+    private string delUrl = "https://localhost:7129/api/Users/DelAB";
+
     // Start is called before the first frame update
     void Start()
     {
@@ -43,6 +46,7 @@ public class DisplayBoxContent : MonoBehaviour
     {
         EventCenter.AddListener(ENventType.LoadChooseToAB,LoadChooseToAB);
         EventCenter.AddListener(ENventType.UpdateAB,UpdateAB);
+        EventCenter.AddListener(ENventType.RemoveABPackage,RemoveABPackage);
     }
     
     private void UpdateAB()
@@ -57,6 +61,9 @@ public class DisplayBoxContent : MonoBehaviour
         // Destroy(AB);
     }
 
+    /// <summary>
+    /// 下载并展示AB包
+    /// </summary>
     private void LoadChooseToAB()
     {
         if (_toggle.isOn)
@@ -82,10 +89,37 @@ public class DisplayBoxContent : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// 删除对应AB包
+    /// </summary>
+    private void RemoveABPackage()
+    {
+        if (_toggle.isOn)
+        {
+            Debug.Log("收到删除广播");
+            var webRequest=GameManager.Instance.GetComponent<WebRequest>();
+
+            JsonData jsonData = new JsonData();
+            jsonData["adminOpenId"] = GameManager.Instance.userData.openId;
+            jsonData["adminPassword"] =  Md5.ToCalculateMd5(GameManager.Instance.userData.password);
+            jsonData["id"] = showAbPackageReturn.Id;
+        
+            // Debug.Log(delUrl);
+            
+            webRequest.Post(delUrl,new WebRequest.HttpHelperPostGetCallbacks((code, request, rsponse) =>
+            {
+                Debug.Log(rsponse.text);
+                EventCenter.Broadcast(ENventType.UpdateData);
+            }),jsonData,GameManager.Instance.userData.token);
+        }
+        
+    }
+
     private void OnDestroy()
     {
         EventCenter.RemoveListener(ENventType.LoadChooseToAB,LoadChooseToAB);
         EventCenter.RemoveListener(ENventType.UpdateAB,UpdateAB);
+        EventCenter.RemoveListener(ENventType.RemoveABPackage,RemoveABPackage);
     }
 
     /// <summary>

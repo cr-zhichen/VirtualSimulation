@@ -115,6 +115,10 @@ public class UploadABPackage : MonoBehaviour
 				EventCenter.Broadcast(ENventType.UpdateData);
 			}),jsonData,GameManager.Instance.userData.token);
 		}
+		else
+		{
+			Debug.Log("未选择AB包");
+		}
 
 	}
 	

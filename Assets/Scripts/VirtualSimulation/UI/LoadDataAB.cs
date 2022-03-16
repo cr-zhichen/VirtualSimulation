@@ -104,6 +104,14 @@ public class LoadDataAB : MonoBehaviour
     {
         EventCenter.Broadcast(ENventType.LoadChooseToAB);
     }
+
+    /// <summary>
+    /// 广播删除AB包
+    /// </summary>
+    public void RemoveABPackage()
+    {
+        EventCenter.Broadcast(ENventType.RemoveABPackage);
+    }
     
     [System.Serializable]
     public class ShowABPackageReturn

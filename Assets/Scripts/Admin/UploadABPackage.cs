@@ -55,6 +55,10 @@ public class UploadABPackage : MonoBehaviour
 	private void OnDestroy()
 	{
 		EventCenter.RemoveListener(ENventType.UpdateAB,UpdateAB);
+		if (AB!=null)
+		{
+			AB.Unload(true);
+		}
 	}
 
 	/// <summary>

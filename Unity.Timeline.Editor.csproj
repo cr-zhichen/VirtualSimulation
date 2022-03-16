@@ -92,8 +92,8 @@
      <Compile Include="Library\PackageCache\com.unity.timeline@1.6.3\Editor\treeview\TrackGui\TrackResizeHandle.cs" />
      <Compile Include="Library\PackageCache\com.unity.timeline@1.6.3\Editor\Manipulators\Move\IMoveItemMode.cs" />
      <Compile Include="Library\PackageCache\com.unity.timeline@1.6.3\Editor\Window\TimelineWindowAnalytics.cs" />
-     <Compile Include="Library\PackageCache\com.unity.timeline@1.6.3\Editor\Animation\AnimationClipActions.cs" />
      <Compile Include="Library\PackageCache\com.unity.timeline@1.6.3\Editor\inspectors\BuiltInCurvePresets.cs" />
+     <Compile Include="Library\PackageCache\com.unity.timeline@1.6.3\Editor\Animation\AnimationClipActions.cs" />
      <Compile Include="Library\PackageCache\com.unity.timeline@1.6.3\Editor\inspectors\GroupTrackInspector.cs" />
      <Compile Include="Library\PackageCache\com.unity.timeline@1.6.3\Editor\Recording\TimelineRecording.cs" />
      <Compile Include="Library\PackageCache\com.unity.timeline@1.6.3\Editor\Audio\AudioPlayableAssetEditor.cs" />

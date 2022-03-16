@@ -13,6 +13,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 using UnityEngine.UIElements;
 
@@ -25,7 +26,12 @@ public class GameManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(this);
     }
-    
+
+    private void Start()
+    {
+        SceneManager.LoadScene("Login");
+    }
+
     [HeaderAttribute("用户信息")]
     public UserData userData;
 

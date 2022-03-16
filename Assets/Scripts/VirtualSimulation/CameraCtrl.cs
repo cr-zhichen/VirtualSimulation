@@ -14,13 +14,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using HedgehogTeam.EasyTouch;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class CameraCtrl : MonoBehaviour
 {
-    private Transform _target; //获取旋转目标
+    public Transform _target; //获取旋转目标
     private float _time;//计时 用于手指点击后一段时间不自动旋转相机
 
     private void Awake()
@@ -42,6 +43,20 @@ public class CameraCtrl : MonoBehaviour
     {
         //移除广播
         EventCenter.RemoveListener<Vector3, Quaternion>(ENventType.CameraMove, CameraHoming);
+        
+        //触摸
+        //单指滑动
+        EasyTouch.On_Drag -= Drag;
+
+        //双指拖动
+        EasyTouch.On_Drag2Fingers -= Drag2Fingers;
+
+        //双指向内挤压
+        EasyTouch.On_PinchIn -= PinchIn;
+        //双指向外挤压
+        EasyTouch.On_PinchOut -= PinchOut;
+        //停止双指挤压
+        EasyTouch.On_PinchEnd -= PinchEnd;
     }
 
     /// <summary>
@@ -76,7 +91,6 @@ public class CameraCtrl : MonoBehaviour
         EasyTouch.On_PinchEnd += PinchEnd;
 
     }
-    
     /// <summary>
     /// 单指滑动旋转
     /// </summary>
@@ -254,9 +268,13 @@ public class CameraCtrl : MonoBehaviour
     /// <param name="y">Y轴移动数据</param>
     private void Rotate(float x, float y)
     {
-        Transform transform1;
-        (transform1 = transform).RotateAround(_target.transform.position, Vector3.up, x * 5); //左右旋转
+        // Transform transform1;
+        // (transform1 = transform).RotateAround(_target.transform.position, Vector3.up, x * 5); //左右旋转
 
+        Transform transform1;
+        transform1 = this.transform;
+        transform1.RotateAround(_target.transform.position, Vector3.up, x * 5); //左右旋转
+        
         //分拆旋转数值
         float a = transform1.rotation.eulerAngles.x;
         if (a > 180)

@@ -120,6 +120,10 @@ public class DisplayBoxContent : MonoBehaviour
         EventCenter.RemoveListener(ENventType.LoadChooseToAB,LoadChooseToAB);
         EventCenter.RemoveListener(ENventType.UpdateAB,UpdateAB);
         EventCenter.RemoveListener(ENventType.RemoveABPackage,RemoveABPackage);
+        if (AB!=null)
+        {
+            AB.Unload(true);
+        }
     }
 
     /// <summary>

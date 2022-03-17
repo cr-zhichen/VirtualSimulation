@@ -7610,7 +7610,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1841953164}
         m_TargetAssemblyTypeName: UpdatedABPacketID, Assembly-CSharp
         m_MethodName: UpdateUserGroup
         m_Mode: 1

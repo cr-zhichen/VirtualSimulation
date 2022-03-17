@@ -23,7 +23,6 @@ namespace UnityEngine.UI
         /// </remarks>
         /// <example>
         /// <code>
-        /// <![CDATA[
         /// using UnityEngine;
         /// using System.Collections;
         /// using UnityEngine.UI; // Required when Using UI elements.
@@ -41,8 +40,7 @@ namespace UnityEngine.UI
         ///         }
         ///     }
         /// }
-        /// ]]>
-        ///</code>
+        /// </code>
         /// </example>
         public enum Mode
         {
@@ -127,7 +125,6 @@ namespace UnityEngine.UI
         /// </summary>
         /// <example>
         /// <code>
-        /// <![CDATA[
         /// using UnityEngine;
         /// using System.Collections;
         /// using UnityEngine.UI;  // Required when Using UI elements.
@@ -152,8 +149,7 @@ namespace UnityEngine.UI
         ///         btnLoad.navigation = navigation;
         ///     }
         /// }
-        /// ]]>
-        ///</code>
+        /// </code>
         /// </example>
         public Selectable selectOnUp     { get { return m_SelectOnUp; } set { m_SelectOnUp = value; } }
 
@@ -162,7 +158,6 @@ namespace UnityEngine.UI
         /// </summary>
         /// <example>
         /// <code>
-        /// <![CDATA[
         /// using UnityEngine;
         /// using System.Collections;
         /// using UnityEngine.UI;  // Required when Using UI elements.
@@ -187,8 +182,7 @@ namespace UnityEngine.UI
         ///         btnLoad.navigation = navigation;
         ///     }
         /// }
-        /// ]]>
-        ///</code>
+        /// </code>
         /// </example>
         public Selectable selectOnDown   { get { return m_SelectOnDown; } set { m_SelectOnDown = value; } }
 
@@ -197,7 +191,6 @@ namespace UnityEngine.UI
         /// </summary>
         /// <example>
         /// <code>
-        /// <![CDATA[
         /// using UnityEngine;
         /// using System.Collections;
         /// using UnityEngine.UI;  // Required when Using UI elements.
@@ -222,8 +215,7 @@ namespace UnityEngine.UI
         ///         btnLoad.navigation = navigation;
         ///     }
         /// }
-        /// ]]>
-        ///</code>
+        /// </code>
         /// </example>
         public Selectable selectOnLeft   { get { return m_SelectOnLeft; } set { m_SelectOnLeft = value; } }
 
@@ -232,7 +224,6 @@ namespace UnityEngine.UI
         /// </summary>
         /// <example>
         /// <code>
-        /// <![CDATA[
         /// using UnityEngine;
         /// using System.Collections;
         /// using UnityEngine.UI;  // Required when Using UI elements.
@@ -257,8 +248,7 @@ namespace UnityEngine.UI
         ///         btnLoad.navigation = navigation;
         ///     }
         /// }
-        /// ]]>
-        ///</code>
+        /// </code>
         /// </example>
         public Selectable selectOnRight  { get { return m_SelectOnRight; } set { m_SelectOnRight = value; } }
 
@@ -267,7 +257,6 @@ namespace UnityEngine.UI
         /// </summary>
         /// <example>
         /// <code>
-        /// <![CDATA[
         /// using UnityEngine;
         /// using System.Collections;
         /// using UnityEngine.UI; // Required when Using UI elements.
@@ -282,8 +271,7 @@ namespace UnityEngine.UI
         ///         button.navigation = Navigation.defaultNavigation;
         ///     }
         /// }
-        /// ]]>
-        ///</code>
+        /// </code>
         /// </example>
         static public Navigation defaultNavigation
         {

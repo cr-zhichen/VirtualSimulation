@@ -1,10 +1,10 @@
 ManifestFileVersion: 0
-CRC: 4089501088
+CRC: 366756326
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
-      Name: bicycle
+      Name: models
       Dependencies: {}
     Info_1:
-      Name: models
+      Name: bicycle
       Dependencies: {}

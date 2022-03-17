@@ -8,20 +8,6 @@ namespace UnityEngine.EventSystems
     }
 
     /// <summary>
-    /// Interface to implement if you wish to receive OnPointerMove callbacks.
-    /// </summary>
-    /// <remarks>
-    /// Criteria for this event is implementation dependent. For example see StandAloneInputModule.
-    /// </remarks>
-    public interface IPointerMoveHandler : IEventSystemHandler
-    {
-        /// <summary>
-        /// Use this callback to detect pointer move events
-        /// </summary>
-        void OnPointerMove(PointerEventData eventData);
-    }
-
-    /// <summary>
     /// Interface to implement if you wish to receive OnPointerEnter callbacks.
     /// </summary>
     /// <remarks>
@@ -89,7 +75,6 @@ namespace UnityEngine.EventSystems
     /// </remarks>
     /// <example>
     /// <code>
-    /// <![CDATA[
     /// using UnityEngine;
     /// using UnityEngine.EventSystems;
     ///
@@ -102,8 +87,7 @@ namespace UnityEngine.EventSystems
     ///         Debug.Log(name + " Game Object Clicked!");
     ///     }
     /// }
-    /// ]]>
-    ///</code>
+    /// </code>
     /// </example>
     public interface IPointerClickHandler : IEventSystemHandler
     {
@@ -150,7 +134,6 @@ namespace UnityEngine.EventSystems
     /// </remarks>
     /// <example>
     /// <code>
-    /// <![CDATA[
     /// using UnityEngine;
     /// using UnityEngine.EventSystems;
     /// using UnityEngine.UI;
@@ -232,8 +215,7 @@ namespace UnityEngine.EventSystems
     ///         return comp;
     ///     }
     /// }
-    /// ]]>
-    ///</code>
+    /// </code>
     /// </example>
     public interface IDragHandler : IEventSystemHandler
     {
@@ -263,7 +245,6 @@ namespace UnityEngine.EventSystems
     /// </summary>
     /// <example>
     /// <code>
-    /// <![CDATA[
     /// using UnityEngine;
     /// using UnityEngine.EventSystems;
     ///
@@ -277,8 +258,7 @@ namespace UnityEngine.EventSystems
     ///         }
     ///     }
     /// }
-    /// ]]>
-    ///</code>
+    /// </code>
     /// </example>
     /// <remarks>
     /// Criteria for this event is implementation dependent. For example see StandAloneInputModule.
@@ -318,7 +298,6 @@ namespace UnityEngine.EventSystems
         /// </summary>
         /// <example>
         /// <code>
-        /// <![CDATA[
         /// using UnityEngine;
         /// using UnityEngine.EventSystems;
         ///
@@ -329,8 +308,7 @@ namespace UnityEngine.EventSystems
         ///         Debug.Log("OnUpdateSelected called.");
         ///     }
         /// }
-        /// ]]>
-        ///</code>
+        /// </code>
         /// </example>
         void OnUpdateSelected(BaseEventData eventData);
     }

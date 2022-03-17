@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace UnityEngine.UI
 {
     [RequireComponent(typeof(CanvasRenderer))]
-    [AddComponentMenu("UI/Legacy/Text", 100)]
+    [AddComponentMenu("UI/Text", 10)]
     /// <summary>
     /// The default Graphic to draw font data to screen.
     /// </summary>
@@ -103,7 +103,6 @@ namespace UnityEngine.UI
         /// </remarks>
         /// <example>
         /// <code>
-        /// <![CDATA[
         /// //Create a new Text GameObject by going to Create>UI>Text in the Editor. Attach this script to the Text GameObject. Then, choose or click and drag your own font into the Font section in the Inspector window.
         ///
         /// using UnityEngine;
@@ -132,8 +131,7 @@ namespace UnityEngine.UI
         ///         }
         ///     }
         /// }
-        /// ]]>
-        ///</code>
+        /// </code>
         /// </example>
         public Font font
         {
@@ -171,7 +169,6 @@ namespace UnityEngine.UI
         /// </remarks>
         /// <example>
         /// <code>
-        /// <![CDATA[
         /// using UnityEngine;
         /// using UnityEngine.UI;
         ///
@@ -194,8 +191,7 @@ namespace UnityEngine.UI
         ///         }
         ///     }
         /// }
-        /// ]]>
-        ///</code>
+        /// </code>
         /// </example>
         public virtual string text
         {
@@ -309,7 +305,6 @@ namespace UnityEngine.UI
         /// </remarks>
         /// <example>
         /// <code>
-        /// <![CDATA[
         /// //Create a Text GameObject by going to __Create__>__UI__>__Text__. Attach this script to the GameObject to see it working.
         ///
         /// using UnityEngine;
@@ -343,8 +338,7 @@ namespace UnityEngine.UI
         ///         }
         ///     }
         /// }
-        /// ]]>
-        ///</code>
+        /// </code>
         /// </example>
         public TextAnchor alignment
         {
@@ -394,7 +388,6 @@ namespace UnityEngine.UI
         /// </remarks>
         /// <example>
         /// <code>
-        /// <![CDATA[
         /// //For this script to work, create a new Text GameObject by going to Create>U>Text. Attach the script to the Text GameObject. Make sure the GameObject has a RectTransform component.
         ///
         /// using UnityEngine;
@@ -433,8 +426,7 @@ namespace UnityEngine.UI
         ///         m_Text.text = "I changed my Font size!";
         ///     }
         /// }
-        /// ]]>
-        ///</code>
+        /// </code>
         /// </example>
         public int fontSize
         {
@@ -584,19 +576,13 @@ namespace UnityEngine.UI
 #if UNITY_EDITOR
         protected override void Reset()
         {
-            AssignDefaultFontIfNecessary();
+            AssignDefaultFont();
         }
 
 #endif
         internal void AssignDefaultFont()
         {
             font = Resources.GetBuiltinResource<Font>("Arial.ttf");
-        }
-
-        internal void AssignDefaultFontIfNecessary()
-        {
-            if (font == null)
-                font = Resources.GetBuiltinResource<Font>("Arial.ttf");
         }
 
         /// <summary>

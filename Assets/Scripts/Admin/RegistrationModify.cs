@@ -22,9 +22,9 @@ public class RegistrationModify : MonoBehaviour
     public InputField password;
     public InputField group;
     
-    private string _url = "https://localhost:7129/api/Users/Register";
+    private string _url = "https://virtualsimulationapi.ccrui.cn/api/Users/Register";
 
-    private string _delUserUrl = "https://localhost:7129/api/Users/Cancellation";
+    private string _delUserUrl = "https://virtualsimulationapi.ccrui.cn/api/Users/Cancellation";
     
     private void Awake()
     {

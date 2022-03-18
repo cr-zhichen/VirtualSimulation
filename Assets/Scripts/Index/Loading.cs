@@ -23,7 +23,7 @@ public class Loading : MonoBehaviour
     public InputField emailText;
     public InputField password;
 
-    private string url = "https://localhost:7129/api/Users/Loading";
+    private string url = "https://virtualsimulationapi.ccrui.cn/api/Users/Loading";
     
     public void StartLoading()
     {

@@ -17,7 +17,7 @@ public class UpdatedABPacketID : MonoBehaviour
 {
     
 
-    private string _url="https://localhost:7129/api/Users/UpdateAB";
+    private string _url="https://virtualsimulationapi.ccrui.cn/api/Users/UpdateAB";
 
     public InputField _ABname;
     public InputField _id;

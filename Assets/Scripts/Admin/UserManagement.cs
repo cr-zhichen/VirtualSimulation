@@ -18,7 +18,7 @@ using UnityEngine.UI;
 
 public class UserManagement : MonoBehaviour
 {
-    private string _url = "https://localhost:7129/api/Users/GetUserInformation";
+    private string _url = "https://virtualsimulationapi.ccrui.cn/api/Users/GetUserInformation";
 
     public GameObject userPrefab;
     public List<GameObject> users = new List<GameObject>();

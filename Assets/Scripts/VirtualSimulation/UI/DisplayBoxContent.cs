@@ -30,7 +30,7 @@ public class DisplayBoxContent : MonoBehaviour
     private AssetBundle AB;
     private GameObject ABgameobject;
 
-    private string delUrl = "https://localhost:7129/api/Users/DelAB";
+    private string delUrl = "https://virtualsimulationapi.ccrui.cn/api/Users/DelAB";
 
     // Start is called before the first frame update
     void Start()

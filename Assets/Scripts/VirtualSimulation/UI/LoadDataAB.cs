@@ -19,7 +19,7 @@ using UnityEngine.UI;
 public class LoadDataAB : MonoBehaviour
 {
 
-    private string url = "https://localhost:7129/api/Users/ShowABPackage";
+    private string url = "https://virtualsimulationapi.ccrui.cn/api/Users/ShowABPackage";
 
     public List<ShowABPackageReturn> showAbPackageReturns;
 

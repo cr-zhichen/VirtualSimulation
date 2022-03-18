@@ -133,13 +133,13 @@ public class WebRequest : MonoBehaviour
     /// <param name="header">请求头字典, 默认Content-Type=application/json</param>
     /// <param name="timeout"></param>
     public void Post(string url, HttpHelperPostGetCallbacks callback, JsonData fields, string token = null,
-        JsonData header = null, int timeout = 5)
+        JsonData header = null, int timeout = 100)
     {
         StartCoroutine(_Post(url, callback, fields, token,header, timeout));
     }
 
     IEnumerator _Post(string url, HttpHelperPostGetCallbacks callback, JsonData fields, string token = null,
-        JsonData header = null, int timeout = 5)
+        JsonData header = null, int timeout = 100)
     {
         byte[] bodyRaw = Encoding.UTF8.GetBytes(fields.ToJson());
         using (UnityWebRequest webRequest = UnityWebRequest.Post(url, "POST"))

@@ -27,6 +27,7 @@ public class UploadABPackage : MonoBehaviour
 	private string url = "https://virtualsimulationapi.ccrui.cn/api/Users/AddAB";
 
 	public RenderTexture renderTexture;
+	public Camera screenshotTheCamera;
 
 	public byte[] ABbyte;
 	public string ABname;
@@ -130,7 +131,7 @@ public class UploadABPackage : MonoBehaviour
 			jsonData["adminOpenId"] = GameManager.Instance.userData.openId;
 			jsonData["adminPassword"] =  Md5.ToCalculateMd5(GameManager.Instance.userData.password);
 			jsonData["name"] = ABname;
-			jsonData["image"] = Screenshots.StartScreenshots(renderTexture);
+			jsonData["image"] = Screenshots.StartScreenshots(screenshotTheCamera);
 			jsonData["ab"] = Convert.ToBase64String(ABbyte);
 			jsonData["group"] = group;
 				

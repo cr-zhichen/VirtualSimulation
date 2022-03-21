@@ -52,10 +52,16 @@ public class Loading : MonoBehaviour
                 {
                     SceneManager.LoadScene("Admin");
                 }
+
+                Notice.Instance.AccordingToNotice(a.messass,Color.green, true,null);
+                
             }
             else
             {
                 Debug.LogWarning(rsponse.text);
+                
+                var a=JsonConvert.DeserializeObject<Tool.ReturnClass>(rsponse.text);
+                Notice.Instance.AccordingToNotice(a.messass,Color.red, true,null);
             }
         }),jsonData,"");
 

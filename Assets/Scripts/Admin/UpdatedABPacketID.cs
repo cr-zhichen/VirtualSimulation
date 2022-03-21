@@ -17,7 +17,7 @@ public class UpdatedABPacketID : MonoBehaviour
 {
     
 
-    private string _url="https://virtualsimulationapi.ccrui.cn/api/Users/UpdateAB";
+    private string _url="api/Users/UpdateAB";
 
     public InputField _ABname;
     public InputField _id;
@@ -63,7 +63,7 @@ public class UpdatedABPacketID : MonoBehaviour
         jsonData["group"] = @group.text;
         
         
-        webRequest.Post(_url,new WebRequest.HttpHelperPostGetCallbacks((code, request, rsponse) =>
+        webRequest.Post(GameManager.Instance.url+_url,new WebRequest.HttpHelperPostGetCallbacks((code, request, rsponse) =>
         {
             Debug.Log(rsponse.text);
             EventCenter.Broadcast(ENventType.UpdateData);

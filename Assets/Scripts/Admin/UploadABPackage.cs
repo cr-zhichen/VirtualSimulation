@@ -24,7 +24,7 @@ public class UploadABPackage : MonoBehaviour
 	public delegate void Complete(bool b,[CanBeNull] List<string> name,[CanBeNull] List<Byte[]> bytesList,[CanBeNull] List<string> fill);
 	public delegate void AbPackageDownloadIsComplete(AssetBundle AB);
 	
-	private string url = "https://virtualsimulationapi.ccrui.cn/api/Users/AddAB";
+	private string url = "api/Users/AddAB";
 
 	public RenderTexture renderTexture;
 	public Camera screenshotTheCamera;
@@ -136,7 +136,7 @@ public class UploadABPackage : MonoBehaviour
 			jsonData["group"] = group;
 				
 				
-			webRequest.Post(url,new WebRequest.HttpHelperPostGetCallbacks((code, request, rsponse) =>
+			webRequest.Post(GameManager.Instance.url+url,new WebRequest.HttpHelperPostGetCallbacks((code, request, rsponse) =>
 			{
 				Debug.Log(rsponse.text);
 				EventCenter.Broadcast(ENventType.UpdateData);

@@ -22,9 +22,9 @@ public class RegistrationModify : MonoBehaviour
     public InputField password;
     public InputField group;
     
-    private string _url = "https://virtualsimulationapi.ccrui.cn/api/Users/Register";
+    private string _url = "api/Users/Register";
 
-    private string _delUserUrl = "https://virtualsimulationapi.ccrui.cn/api/Users/Cancellation";
+    private string _delUserUrl = "api/Users/Cancellation";
     
     private void Awake()
     {
@@ -66,7 +66,7 @@ public class RegistrationModify : MonoBehaviour
         jsonData["password"] = password.text;
         jsonData["group"] = @group.text;
         
-        webRequest.Post(_url,new WebRequest.HttpHelperPostGetCallbacks((code, request, rsponse) =>
+        webRequest.Post(GameManager.Instance.url+_url,new WebRequest.HttpHelperPostGetCallbacks((code, request, rsponse) =>
         {
             Debug.Log(rsponse.text);
             EventCenter.Broadcast(ENventType.UpdateAllUserData);
@@ -86,7 +86,7 @@ public class RegistrationModify : MonoBehaviour
         jsonData["adminPassword"] =  Md5.ToCalculateMd5(GameManager.Instance.userData.password);
         jsonData["UserOpenID"] =  Md5.ToCalculateMd5(email.text);
         
-        webRequest.Post(_delUserUrl,new WebRequest.HttpHelperPostGetCallbacks((code, request, rsponse) =>
+        webRequest.Post(GameManager.Instance.url+_delUserUrl,new WebRequest.HttpHelperPostGetCallbacks((code, request, rsponse) =>
         {
             Debug.Log(rsponse.text);
             EventCenter.Broadcast(ENventType.UpdateAllUserData);

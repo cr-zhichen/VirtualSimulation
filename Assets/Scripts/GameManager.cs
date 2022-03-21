@@ -32,6 +32,9 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("Login");
     }
 
+    [HeaderAttribute("服务器Url")]
+    public string url;
+
     [HeaderAttribute("用户信息")]
     public UserData userData;
 

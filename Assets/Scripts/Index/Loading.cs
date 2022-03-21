@@ -23,7 +23,7 @@ public class Loading : MonoBehaviour
     public InputField emailText;
     public InputField password;
 
-    private string url = "https://virtualsimulationapi.ccrui.cn/api/Users/Loading";
+    private string url = "api/Users/Loading";
     
     public void StartLoading()
     {
@@ -33,7 +33,7 @@ public class Loading : MonoBehaviour
         jsonData["Md5Password"]=Md5.ToCalculateMd5(password.text);
 
         var webRequest=GameManager.Instance.GetComponent<WebRequest>();
-        webRequest.Post(url,new WebRequest.HttpHelperPostGetCallbacks((code, request, rsponse) =>
+        webRequest.Post(GameManager.Instance.url+url,new WebRequest.HttpHelperPostGetCallbacks((code, request, rsponse) =>
         {
             
             if (rsponse.code==200)

@@ -18,7 +18,7 @@ using UnityEngine.UI;
 
 public class UserManagement : MonoBehaviour
 {
-    private string _url = "https://virtualsimulationapi.ccrui.cn/api/Users/GetUserInformation";
+    private string _url = "api/Users/GetUserInformation";
 
     public GameObject userPrefab;
     public List<GameObject> users = new List<GameObject>();
@@ -65,7 +65,7 @@ public class UserManagement : MonoBehaviour
         jsonData["adminOpenId"] = GameManager.Instance.userData.openId;
         jsonData["adminPassword"] =  Md5.ToCalculateMd5(GameManager.Instance.userData.password);
         
-        webRequest.Post(_url,new WebRequest.HttpHelperPostGetCallbacks((code, request, rsponse) =>
+        webRequest.Post(GameManager.Instance.url+_url,new WebRequest.HttpHelperPostGetCallbacks((code, request, rsponse) =>
         {
             Debug.Log(rsponse.text);
             

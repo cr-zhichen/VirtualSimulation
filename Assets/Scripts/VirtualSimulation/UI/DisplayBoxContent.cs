@@ -30,7 +30,7 @@ public class DisplayBoxContent : MonoBehaviour
     private AssetBundle AB;
     private GameObject ABgameobject;
 
-    private string delUrl = "https://virtualsimulationapi.ccrui.cn/api/Users/DelAB";
+    private string delUrl = "api/Users/DelAB";
 
     // Start is called before the first frame update
     void Start()
@@ -106,7 +106,7 @@ public class DisplayBoxContent : MonoBehaviour
         
             // Debug.Log(delUrl);
             
-            webRequest.Post(delUrl,new WebRequest.HttpHelperPostGetCallbacks((code, request, rsponse) =>
+            webRequest.Post(GameManager.Instance.url+delUrl,new WebRequest.HttpHelperPostGetCallbacks((code, request, rsponse) =>
             {
                 Debug.Log(rsponse.text);
                 EventCenter.Broadcast(ENventType.UpdateData);

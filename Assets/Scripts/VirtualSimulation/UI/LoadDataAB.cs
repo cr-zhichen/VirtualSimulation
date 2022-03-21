@@ -19,7 +19,7 @@ using UnityEngine.UI;
 public class LoadDataAB : MonoBehaviour
 {
 
-    private string url = "https://virtualsimulationapi.ccrui.cn/api/Users/ShowABPackage";
+    private string url = "api/Users/ShowABPackage";
 
     public List<ShowABPackageReturn> showAbPackageReturns;
 
@@ -69,7 +69,7 @@ public class LoadDataAB : MonoBehaviour
         jsonData["password"] = Md5.ToCalculateMd5(GameManager.Instance.userData.password);
         
         var webRequest = GameManager.Instance.GetComponent<WebRequest>();
-        webRequest.Post(url,new WebRequest.HttpHelperPostGetCallbacks((code, request, rsponse) =>
+        webRequest.Post(GameManager.Instance.url+url,new WebRequest.HttpHelperPostGetCallbacks((code, request, rsponse) =>
         {
             Debug.Log(rsponse.text);
             var a=JsonConvert.DeserializeObject<Tool.ReturnClassList>(rsponse.text);

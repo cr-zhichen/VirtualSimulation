@@ -227,7 +227,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee9ca8b4e79e4c94d9f5d87a1e68202f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  url: https://localhost:7129/
+  url: https://virtualsimulationapi.ccrui.cn/
   userData:
     openId: 
     email: 

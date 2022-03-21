@@ -14,6 +14,7 @@ using System.Collections.Generic;
 using System.IO;
 using JetBrains.Annotations;
 using LitJson;
+using Newtonsoft.Json;
 using SimpleFileBrowser;
 using UnityEngine;
 using UnityEngine.UI;
@@ -85,6 +86,7 @@ public class UploadABPackage : MonoBehaviour
 					try
 					{
 						ABgameobject= Instantiate(ab.LoadAsset<GameObject>(name[0]));
+						Notice.Instance.AccordingToNotice("加载成功",Color.green, true,null);
 						AB = ab;
 						ABbyte = bytesList[0];
 						ABname = name[0];
@@ -93,6 +95,7 @@ public class UploadABPackage : MonoBehaviour
 					catch (Exception e)
 					{
 						Debug.Log("请加载正确AB包，并保证AB包内预制体与包名相同");
+						Notice.Instance.AccordingToNotice("请加载正确AB包，并保证AB包内预制体与包名相同",Color.red, true,null);
 						ABbyte = null;
 						ABname = null;
 						Console.WriteLine(e);
@@ -134,17 +137,33 @@ public class UploadABPackage : MonoBehaviour
 			jsonData["image"] = Screenshots.StartScreenshots(screenshotTheCamera);
 			jsonData["ab"] = Convert.ToBase64String(ABbyte);
 			jsonData["group"] = group;
-				
-				
+
+			GameObject _g = Notice.Instance.AccordingToNotice("正在上传", null, false, null);
+			
 			webRequest.Post(GameManager.Instance.url+url,new WebRequest.HttpHelperPostGetCallbacks((code, request, rsponse) =>
 			{
 				Debug.Log(rsponse.text);
-				EventCenter.Broadcast(ENventType.UpdateData);
+
+				if (rsponse.code==200)
+				{
+					EventCenter.Broadcast(ENventType.UpdateData);
+					
+					Notice.Instance.CloseToInform(_g);
+					var a=JsonConvert.DeserializeObject<Tool.ReturnClass>(rsponse.text);
+					Notice.Instance.AccordingToNotice(a.messass,Color.green, true,null);
+				}
+				else
+				{
+					Notice.Instance.CloseToInform(_g);
+					Notice.Instance.AccordingToNotice("上传失败",Color.red, true,null);
+				}
+				
 			}),jsonData,GameManager.Instance.userData.token);
 		}
 		else
 		{
 			Debug.Log("未选择AB包");
+			Notice.Instance.AccordingToNotice("未选择AB包",Color.red, true,null);
 		}
 
 	}
@@ -159,11 +178,14 @@ public class UploadABPackage : MonoBehaviour
 	{
 		
 		Debug.Log($"正在加载模型：{_url}");
+		GameObject _g = Notice.Instance.AccordingToNotice($"正在加载模型：{_url}", null, false, null);
 		string url = _url;        
 		var request 
 			= UnityEngine.Networking.UnityWebRequestAssetBundle.GetAssetBundle(url, 0);
 		yield return request.Send();
 		AssetBundle bundle = UnityEngine.Networking.DownloadHandlerAssetBundle.GetContent(request);
+		
+		Notice.Instance.CloseToInform(_g);
 
 		abPackageDownloadIsComplete(bundle);
 

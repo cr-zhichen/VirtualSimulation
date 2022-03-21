@@ -10,6 +10,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using LitJson;
+using Newtonsoft.Json;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -66,7 +67,21 @@ public class UpdatedABPacketID : MonoBehaviour
         webRequest.Post(GameManager.Instance.url+_url,new WebRequest.HttpHelperPostGetCallbacks((code, request, rsponse) =>
         {
             Debug.Log(rsponse.text);
-            EventCenter.Broadcast(ENventType.UpdateData);
+
+            if (rsponse.code == 200)
+            {
+                EventCenter.Broadcast(ENventType.UpdateData);
+                
+                var a=JsonConvert.DeserializeObject<Tool.ReturnClass>(rsponse.text);
+                Notice.Instance.AccordingToNotice(a.messass,Color.green, true,null);
+            }
+            else
+            {
+                var a=JsonConvert.DeserializeObject<Tool.ReturnClass>(rsponse.text);
+                Notice.Instance.AccordingToNotice(a.messass,Color.red, true,null);
+            }
+            
+            
             
         }),jsonData,GameManager.Instance.userData.token);
     }

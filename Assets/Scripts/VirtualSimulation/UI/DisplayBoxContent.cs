@@ -12,6 +12,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using LitJson;
+using Newtonsoft.Json;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
@@ -68,22 +69,35 @@ public class DisplayBoxContent : MonoBehaviour
     {
         if (_toggle.isOn)
         {
+
+            try
+            {
+                if (ABgameobject == null)
+                {
+                    EventCenter.Broadcast(ENventType.UpdateAB);
+                    Debug.Log("收到加载广播");
+                    StartCoroutine(InstantiateObject(showAbPackageReturn.AB, new AbPackageDownloadIsComplete(
+                        ab =>
+                        {
+                            AB = ab;
+                            ABgameobject=Instantiate(ab.LoadAsset<GameObject>(showAbPackageReturn.Name));
+                            Notice.Instance.AccordingToNotice("加载成功",Color.green, true,null);
+                        })));
+                }
+                else
+                {
+                    Debug.Log("模型以被实例化");
+                    Notice.Instance.AccordingToNotice("模型以被实例化",Color.green, true,null);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                Notice.Instance.AccordingToNotice(e.Message,Color.red, true,null);
+                throw;
+            }
             
-            if (ABgameobject == null)
-            {
-                EventCenter.Broadcast(ENventType.UpdateAB);
-                Debug.Log("收到加载广播");
-                StartCoroutine(InstantiateObject(showAbPackageReturn.AB, new AbPackageDownloadIsComplete(
-                    ab =>
-                    {
-                        AB = ab;
-                        ABgameobject=Instantiate(ab.LoadAsset<GameObject>(showAbPackageReturn.Name));
-                    })));
-            }
-            else
-            {
-                Debug.Log("模型以被实例化");
-            }
+            
             
         }
 
@@ -109,7 +123,22 @@ public class DisplayBoxContent : MonoBehaviour
             webRequest.Post(GameManager.Instance.url+delUrl,new WebRequest.HttpHelperPostGetCallbacks((code, request, rsponse) =>
             {
                 Debug.Log(rsponse.text);
-                EventCenter.Broadcast(ENventType.UpdateData);
+
+                if (rsponse.code==200)
+                {
+                    EventCenter.Broadcast(ENventType.UpdateData);
+                    
+                    var a=JsonConvert.DeserializeObject<Tool.ReturnClass>(rsponse.text);
+                    Notice.Instance.AccordingToNotice(a.messass,Color.green, true,null);
+
+                }
+                else
+                {
+                    var a=JsonConvert.DeserializeObject<Tool.ReturnClass>(rsponse.text);
+                    Notice.Instance.AccordingToNotice(a.messass,Color.red, true,null);
+
+                }
+                
             }),jsonData,GameManager.Instance.userData.token);
         }
         
@@ -146,11 +175,14 @@ public class DisplayBoxContent : MonoBehaviour
     IEnumerator InstantiateObject(string _url,AbPackageDownloadIsComplete abPackageDownloadIsComplete)
     {
         Debug.Log($"正在加载模型：{_url}");
+        GameObject _g = Notice.Instance.AccordingToNotice($"正在加载模型：{_url}", null, false, null);
         string url = _url;        
         var request 
             = UnityEngine.Networking.UnityWebRequestAssetBundle.GetAssetBundle(url, 0);
         yield return request.Send();
         AssetBundle bundle = UnityEngine.Networking.DownloadHandlerAssetBundle.GetContent(request);
+        
+        Notice.Instance.CloseToInform(_g);
 
         abPackageDownloadIsComplete(bundle);
 

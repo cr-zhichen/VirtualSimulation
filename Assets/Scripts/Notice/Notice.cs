@@ -49,7 +49,9 @@ public class Notice : MonoBehaviour
 
         GameObject g = Instantiate(notificationObject, _noticeCanvas.transform);
 
-        g.transform.GetChild(0).GetComponent<Image>().color = color?? Color.white;
+        color = new Color(color?.r ?? 1.0f, color?.g ?? 1.0f, color?.b ?? 1.0f, 0.5f);
+
+        g.transform.GetChild(0).GetComponent<Image>().color = color?? new Color(1.0f,1.0f,1.0f,0.5f);
         g.transform.GetChild(1).GetComponent<Text>().text = text;
         
         _notificationObjectList.Add(g);
@@ -86,7 +88,10 @@ public class Notice : MonoBehaviour
         {
             if (g==_g)
             {
-                Destroy(_g);
+                
+                _g.GetComponent<Animator>().SetTrigger("Close");
+
+                Destroy(_g,1.0f);
                 _notificationObjectList.Remove(_g);
                 return;
             }

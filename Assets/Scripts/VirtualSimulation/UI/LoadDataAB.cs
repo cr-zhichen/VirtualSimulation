@@ -72,28 +72,41 @@ public class LoadDataAB : MonoBehaviour
         webRequest.Post(GameManager.Instance.url+url,new WebRequest.HttpHelperPostGetCallbacks((code, request, rsponse) =>
         {
             Debug.Log(rsponse.text);
-            var a=JsonConvert.DeserializeObject<Tool.ReturnClassList>(rsponse.text);
-            
-            // Debug.Log(a.data);
 
-            foreach (var data in a.data)
+            if (rsponse.code==200)
             {
-                var _showABPackageReturn =new ShowABPackageReturn
-                {
-                    Id = data.id,
-                    Name = data.name,
-                    Image = "https://kai.chengrui.xyz/VirtualSimulation/Image/" + data.image,
-                    AB = "https://kai.chengrui.xyz/VirtualSimulation/AssetBundles/" + data.ab,
-                    Group = data.group
-                };
-                showAbPackageReturns.Add(_showABPackageReturn);
+                var a=JsonConvert.DeserializeObject<Tool.ReturnClassList>(rsponse.text);
+            
+                // Debug.Log(a.data);
 
-                GameObject g = Instantiate(displayBoxContent, this.transform);
-                displayBoxContentList.Add(g);
-                g.GetComponent<Toggle>().group = this.GetComponent<ToggleGroup>();
-                g.GetComponent<DisplayBoxContent>().showAbPackageReturn = _showABPackageReturn;
+                foreach (var data in a.data)
+                {
+                    var _showABPackageReturn =new ShowABPackageReturn
+                    {
+                        Id = data.id,
+                        Name = data.name,
+                        Image = "https://kai.chengrui.xyz/VirtualSimulation/Image/" + data.image,
+                        AB = "https://kai.chengrui.xyz/VirtualSimulation/AssetBundles/" + data.ab,
+                        Group = data.group
+                    };
+                    showAbPackageReturns.Add(_showABPackageReturn);
+
+                    GameObject g = Instantiate(displayBoxContent, this.transform);
+                    displayBoxContentList.Add(g);
+                    g.GetComponent<Toggle>().group = this.GetComponent<ToggleGroup>();
+                    g.GetComponent<DisplayBoxContent>().showAbPackageReturn = _showABPackageReturn;
+
+                }
+                
+            }
+            else
+            {
+                var a=JsonConvert.DeserializeObject<Tool.ReturnClassList>(rsponse.text);
+                Notice.Instance.AccordingToNotice(a.messass,Color.red, true,null);
+
 
             }
+            
             
         }),jsonData,GameManager.Instance.userData.token);
     }

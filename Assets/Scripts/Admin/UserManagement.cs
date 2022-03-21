@@ -68,26 +68,37 @@ public class UserManagement : MonoBehaviour
         webRequest.Post(GameManager.Instance.url+_url,new WebRequest.HttpHelperPostGetCallbacks((code, request, rsponse) =>
         {
             Debug.Log(rsponse.text);
-            
-            var a=JsonConvert.DeserializeObject<Tool.ReturnClassList>(rsponse.text);
 
-            foreach (var _data in a.data)
+            if (rsponse.code==200)
             {
-                GameObject g= Instantiate(userPrefab,this.transform);
-                users.Add(g);
+                var a=JsonConvert.DeserializeObject<Tool.ReturnClassList>(rsponse.text);
 
-                g.GetComponent<Toggle>().group = this.GetComponent<ToggleGroup>();
-                g.GetComponent<UserDataBox>().email.text = _data.email;
-                g.GetComponent<UserDataBox>().@group.text = _data.@group.ToString();
+                foreach (var _data in a.data)
+                {
+                    GameObject g= Instantiate(userPrefab,this.transform);
+                    users.Add(g);
+
+                    g.GetComponent<Toggle>().group = this.GetComponent<ToggleGroup>();
+                    g.GetComponent<UserDataBox>().email.text = _data.email;
+                    g.GetComponent<UserDataBox>().@group.text = _data.@group.ToString();
 
                 
-                UserDatas.Add(new UserData
-                {
-                    openID = _data.openID,
-                    email = _data.email,
-                    @group = _data.@group,
-                });
+                    UserDatas.Add(new UserData
+                    {
+                        openID = _data.openID,
+                        email = _data.email,
+                        @group = _data.@group,
+                    });
+                }
+                
             }
+            else
+            {
+                var a=JsonConvert.DeserializeObject<Tool.ReturnClassList>(rsponse.text);
+                Notice.Instance.AccordingToNotice(a.messass,Color.red, true,null);
+
+            }
+            
             
             
         }),jsonData,GameManager.Instance.userData.token);

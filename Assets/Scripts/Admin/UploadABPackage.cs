@@ -178,7 +178,7 @@ public class UploadABPackage : MonoBehaviour
 	{
 		
 		Debug.Log($"正在加载模型：{_url}");
-		GameObject _g = Notice.Instance.AccordingToNotice($"正在加载模型：{_url}", null, false, null);
+		GameObject _g = Notice.Instance.AccordingToNotice($"正在加载模型，请稍等", null, false, null);
 		string url = _url;        
 		var request 
 			= UnityEngine.Networking.UnityWebRequestAssetBundle.GetAssetBundle(url, 0);

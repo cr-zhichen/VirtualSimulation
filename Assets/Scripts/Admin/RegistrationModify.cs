@@ -60,12 +60,19 @@ public class RegistrationModify : MonoBehaviour
     {
         var webRequest= GameManager.Instance.GetComponent<WebRequest>();
 
+        if (@group.text==null||group.text.Length==0)
+        {
+            @group.text = "1";
+        }
+
         JsonData jsonData = new JsonData();
         jsonData["adminOpenId"] = GameManager.Instance.userData.openId;
         jsonData["adminPassword"] =  Md5.ToCalculateMd5(GameManager.Instance.userData.password);
         jsonData["email"] = email.text;
         jsonData["password"] = password.text;
         jsonData["group"] = @group.text;
+        
+        Debug.Log(jsonData.ToJson());
         
         webRequest.Post(GameManager.Instance.url+_url,new WebRequest.HttpHelperPostGetCallbacks((code, request, rsponse) =>
         {

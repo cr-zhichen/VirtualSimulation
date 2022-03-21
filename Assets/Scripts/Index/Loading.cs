@@ -53,15 +53,25 @@ public class Loading : MonoBehaviour
                     SceneManager.LoadScene("Admin");
                 }
 
-                Notice.Instance.AccordingToNotice(a.messass,Color.green, true,null);
+                // Notice.Instance.AccordingToNotice(a.messass,Color.green, true,null);
                 
             }
             else
             {
                 Debug.LogWarning(rsponse.text);
+
+                try
+                {
+                    var a=JsonConvert.DeserializeObject<Tool.ReturnClass>(rsponse.text);
+                    Notice.Instance.AccordingToNotice(a.messass,Color.red, true,null);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                    Notice.Instance.AccordingToNotice("登陆失败 请检查服务器链接",Color.red, true,null);
+                    throw;
+                }
                 
-                var a=JsonConvert.DeserializeObject<Tool.ReturnClass>(rsponse.text);
-                Notice.Instance.AccordingToNotice(a.messass,Color.red, true,null);
             }
         }),jsonData,"");
 

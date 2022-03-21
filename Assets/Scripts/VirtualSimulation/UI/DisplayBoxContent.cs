@@ -175,16 +175,29 @@ public class DisplayBoxContent : MonoBehaviour
     IEnumerator InstantiateObject(string _url,AbPackageDownloadIsComplete abPackageDownloadIsComplete)
     {
         Debug.Log($"正在加载模型：{_url}");
-        GameObject _g = Notice.Instance.AccordingToNotice($"正在加载模型：{_url}", null, false, null);
+        GameObject _g = Notice.Instance.AccordingToNotice($"正在加载模型，请稍等", null, false, null);
         string url = _url;        
         var request 
             = UnityEngine.Networking.UnityWebRequestAssetBundle.GetAssetBundle(url, 0);
         yield return request.Send();
-        AssetBundle bundle = UnityEngine.Networking.DownloadHandlerAssetBundle.GetContent(request);
-        
-        Notice.Instance.CloseToInform(_g);
 
-        abPackageDownloadIsComplete(bundle);
+        try
+        {
+            AssetBundle bundle = UnityEngine.Networking.DownloadHandlerAssetBundle.GetContent(request);
+            Notice.Instance.CloseToInform(_g);
+            abPackageDownloadIsComplete(bundle);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            Notice.Instance.CloseToInform(_g);
+            Notice.Instance.AccordingToNotice("模型加载失败",Color.red, true,null);
+            throw;
+        }
+        
+        
+
+        
 
     }
 

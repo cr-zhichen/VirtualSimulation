@@ -13,6 +13,7 @@ using System.Collections;
 using System.Collections.Generic;
 using LitJson;
 using Newtonsoft.Json;
+using Tool;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -94,8 +95,17 @@ public class UserManagement : MonoBehaviour
             }
             else
             {
-                var a=JsonConvert.DeserializeObject<Tool.ReturnClassList>(rsponse.text);
-                Notice.Instance.AccordingToNotice(a.messass,Color.red, true,null);
+                try
+                {
+                    var a=JsonConvert.DeserializeObject<ReturnClassList>(rsponse.text);
+                    Notice.Instance.AccordingToNotice(a.messass,Color.red, true,null);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                    Notice.Instance.AccordingToNotice("登陆失败 请检查服务器链接",Color.red, true,null);
+                    throw;
+                }
 
             }
             

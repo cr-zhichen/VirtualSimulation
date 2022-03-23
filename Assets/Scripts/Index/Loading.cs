@@ -76,5 +76,4 @@ public class Loading : MonoBehaviour
         }),jsonData,"");
 
     }
-
 }

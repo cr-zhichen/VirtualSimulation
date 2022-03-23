@@ -62,8 +62,8 @@
      <Compile Include="Library\PackageCache\com.unity.timeline@1.6.4\Editor\Window\TimelineWindow_Duration.cs" />
      <Compile Include="Library\PackageCache\com.unity.timeline@1.6.4\Editor\Tooltip.cs" />
      <Compile Include="Library\PackageCache\com.unity.timeline@1.6.4\Editor\Manipulators\Sequence\SelectAndMoveItem.cs" />
-     <Compile Include="Library\PackageCache\com.unity.timeline@1.6.4\Editor\Utilities\Scopes\LabelWidthScope.cs" />
      <Compile Include="Library\PackageCache\com.unity.timeline@1.6.4\Editor\Items\ItemsGroup.cs" />
+     <Compile Include="Library\PackageCache\com.unity.timeline@1.6.4\Editor\Utilities\Scopes\LabelWidthScope.cs" />
      <Compile Include="Library\PackageCache\com.unity.timeline@1.6.4\Editor\TimelineUtility.cs" />
      <Compile Include="Library\PackageCache\com.unity.timeline@1.6.4\Editor\Signals\SignalEmitterEditor.cs" />
      <Compile Include="Library\PackageCache\com.unity.timeline@1.6.4\Editor\State\ISequenceState.cs" />

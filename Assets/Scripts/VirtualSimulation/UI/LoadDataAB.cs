@@ -86,8 +86,8 @@ public class LoadDataAB : MonoBehaviour
                     {
                         Id = data.id,
                         Name = data.name,
-                        Image = $"{GameManager.Instance.url}image/{data.image}",
-                        AB = $"{GameManager.Instance.url}ab/{data.ab}",
+                        Image = "https://kai.chengrui.xyz/VirtualSimulation/Image/" + data.image,
+                        AB = "https://kai.chengrui.xyz/VirtualSimulation/AssetBundles/" + data.ab,
                         Group = data.group
                     };
                     showAbPackageReturns.Add(_showABPackageReturn);

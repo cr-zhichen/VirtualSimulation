@@ -19,61 +19,56 @@ using UnityEngine.UI;
 
 public class Loading : MonoBehaviour
 {
-
     public InputField emailText;
     public InputField password;
 
     private string url = "api/Users/Loading";
-    
+
     public void StartLoading()
     {
-
         JsonData jsonData = new JsonData();
-        jsonData["Md5Email"]= Md5.ToCalculateMd5(emailText.text);
-        jsonData["Md5Password"]=Md5.ToCalculateMd5(password.text);
+        jsonData["Md5Email"] = Md5.ToCalculateMd5(emailText.text);
+        jsonData["Md5Password"] = Md5.ToCalculateMd5(password.text);
 
-        var webRequest=GameManager.Instance.GetComponent<WebRequest>();
-        webRequest.Post(GameManager.Instance.url+url,new WebRequest.HttpHelperPostGetCallbacks((code, request, rsponse) =>
-        {
-            
-            if (rsponse.code==200)
+        var webRequest = GameManager.Instance.GetComponent<WebRequest>();
+        webRequest.Post(GameManager.Instance.url + url, new WebRequest.HttpHelperPostGetCallbacks(
+            (code, request, rsponse) =>
             {
-                var a=JsonConvert.DeserializeObject<Tool.ReturnClass>(rsponse.text);
-                GameManager.Instance.userData.openId = Md5.ToCalculateMd5(emailText.text);
-                GameManager.Instance.userData.email = emailText.text;
-                GameManager.Instance.userData.password = password.text;
-                GameManager.Instance.userData.token = a.data.token;
-                GameManager.Instance.userData.@group = a.data.group;
-                if (a.data.group!=0)
+                if (rsponse.code == 200)
                 {
-                    SceneManager.LoadScene("VirtualSimulation");
+                    var a = JsonConvert.DeserializeObject<Tool.ReturnClass>(rsponse.text);
+                    GameManager.Instance.userData.openId = Md5.ToCalculateMd5(emailText.text);
+                    GameManager.Instance.userData.email = emailText.text;
+                    GameManager.Instance.userData.password = password.text;
+                    GameManager.Instance.userData.token = a.data.token;
+                    GameManager.Instance.userData.@group = a.data.group;
+                    if (a.data.group != 0)
+                    {
+                        SceneManager.LoadScene("VirtualSimulation");
+                    }
+                    else
+                    {
+                        SceneManager.LoadScene("Admin");
+                    }
+
+                    // Notice.Instance.AccordingToNotice(a.messass,Color.green, true,null);
                 }
                 else
                 {
-                    SceneManager.LoadScene("Admin");
-                }
+                    Debug.LogWarning(rsponse.text);
 
-                // Notice.Instance.AccordingToNotice(a.messass,Color.green, true,null);
-                
-            }
-            else
-            {
-                Debug.LogWarning(rsponse.text);
-
-                try
-                {
-                    var a=JsonConvert.DeserializeObject<Tool.ReturnClass>(rsponse.text);
-                    Notice.Instance.AccordingToNotice(a.messass,Color.red, true,null);
+                    try
+                    {
+                        var a = JsonConvert.DeserializeObject<Tool.ReturnClass>(rsponse.text);
+                        Notice.Instance.AccordingToNotice(a.messass, Color.red, true, null);
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e);
+                        Notice.Instance.AccordingToNotice("登陆失败 请检查服务器链接", Color.red, true, null);
+                        throw;
+                    }
                 }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e);
-                    Notice.Instance.AccordingToNotice("登陆失败 请检查服务器链接",Color.red, true,null);
-                    throw;
-                }
-                
-            }
-        }),jsonData,"");
-
+            }), jsonData, "");
     }
 }

@@ -19,7 +19,6 @@ using UnityEngine.UI;
 
 public class LoadDataAB : MonoBehaviour
 {
-
     private string url = "api/Users/ShowABPackage";
 
     public List<ShowABPackageReturn> showAbPackageReturns;
@@ -35,7 +34,7 @@ public class LoadDataAB : MonoBehaviour
 
     private void Awake()
     {
-        EventCenter.AddListener(ENventType.UpdateData,UpdateData);
+        EventCenter.AddListener(ENventType.UpdateData, UpdateData);
     }
 
     /// <summary>
@@ -50,13 +49,13 @@ public class LoadDataAB : MonoBehaviour
         }
 
         displayBoxContentList = new List<GameObject>();
-        
+
         Load();
     }
 
     private void OnDestroy()
     {
-        EventCenter.RemoveListener(ENventType.UpdateData,UpdateData);
+        EventCenter.RemoveListener(ENventType.UpdateData, UpdateData);
     }
 
     /// <summary>
@@ -64,61 +63,55 @@ public class LoadDataAB : MonoBehaviour
     /// </summary>
     public void Load()
     {
-
         JsonData jsonData = new JsonData();
         jsonData["openid"] = GameManager.Instance.userData.openId;
         jsonData["password"] = Md5.ToCalculateMd5(GameManager.Instance.userData.password);
-        
+
         var webRequest = GameManager.Instance.GetComponent<WebRequest>();
-        webRequest.Post(GameManager.Instance.url+url,new WebRequest.HttpHelperPostGetCallbacks((code, request, rsponse) =>
-        {
-            Debug.Log(rsponse.text);
-
-            if (rsponse.code==200)
+        webRequest.Post(GameManager.Instance.url + url, (
+            (code, request, rsponse) =>
             {
-                var a=JsonConvert.DeserializeObject<Tool.ReturnClassList>(rsponse.text);
-            
-                // Debug.Log(a.data);
+                Debug.Log(rsponse.text);
 
-                foreach (var data in a.data)
+                if (rsponse.code == 200)
                 {
-                    var _showABPackageReturn =new ShowABPackageReturn
+                    var a = JsonConvert.DeserializeObject<Tool.ReturnClassList>(rsponse.text);
+
+                    // Debug.Log(a.data);
+
+                    foreach (var data in a.data)
                     {
-                        Id = data.id,
-                        Name = data.name,
-                        Image = "https://kai.chengrui.xyz/VirtualSimulation/Image/" + data.image,
-                        AB = "https://kai.chengrui.xyz/VirtualSimulation/AssetBundles/" + data.ab,
-                        Group = data.group
-                    };
-                    showAbPackageReturns.Add(_showABPackageReturn);
+                        var _showABPackageReturn = new ShowABPackageReturn
+                        {
+                            Id = data.id,
+                            Name = data.name,
+                            Image = "https://kai.chengrui.xyz/VirtualSimulation/Image/" + data.image,
+                            AB = "https://kai.chengrui.xyz/VirtualSimulation/AssetBundles/" + data.ab,
+                            Group = data.group
+                        };
+                        showAbPackageReturns.Add(_showABPackageReturn);
 
-                    GameObject g = Instantiate(displayBoxContent, this.transform);
-                    displayBoxContentList.Add(g);
-                    g.GetComponent<Toggle>().group = this.GetComponent<ToggleGroup>();
-                    g.GetComponent<DisplayBoxContent>().showAbPackageReturn = _showABPackageReturn;
-
+                        GameObject g = Instantiate(displayBoxContent, this.transform);
+                        displayBoxContentList.Add(g);
+                        g.GetComponent<Toggle>().group = this.GetComponent<ToggleGroup>();
+                        g.GetComponent<DisplayBoxContent>().showAbPackageReturn = _showABPackageReturn;
+                    }
                 }
-                
-            }
-            else
-            {
-                try
+                else
                 {
-                    var a=JsonConvert.DeserializeObject<ReturnClassList>(rsponse.text);
-                    Notice.Instance.AccordingToNotice(a.messass,Color.red, true,null);
+                    try
+                    {
+                        var a = JsonConvert.DeserializeObject<ReturnClassList>(rsponse.text);
+                        Notice.Instance.AccordingToNotice(a.messass, Color.red, true, null);
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e);
+                        Notice.Instance.AccordingToNotice("登陆失败 请检查服务器链接", Color.red, true, null);
+                        throw;
+                    }
                 }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e);
-                    Notice.Instance.AccordingToNotice("登陆失败 请检查服务器链接",Color.red, true,null);
-                    throw;
-                }
-
-
-            }
-            
-            
-        }),jsonData,GameManager.Instance.userData.token);
+            }), jsonData, GameManager.Instance.userData.token);
     }
 
     /// <summary>
@@ -136,15 +129,14 @@ public class LoadDataAB : MonoBehaviour
     {
         EventCenter.Broadcast(ENventType.RemoveABPackage);
     }
-    
+
     [System.Serializable]
     public class ShowABPackageReturn
     {
-        public long Id ;
+        public long Id;
         public string Name;
         public string Image;
-        public string AB ;
+        public string AB;
         public int Group;
     }
-    
 }

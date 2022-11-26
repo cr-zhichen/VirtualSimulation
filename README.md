@@ -96,30 +96,30 @@ MySql的管理方式也是很好的选择，可以利用数据库语句快速的
 在管理员界面还可以对用户信息进行修改，可以修改不同用户所对应的不同用户组，以让用户可以访问属于自己分配组内的模型。  
 用户端可以查看用户对应用户组内所允许查看的模型，并可以对摄像机进行移动操作，来全方位的查看模型的细节。  
 根据以上的基本流程，绘制了《虚拟仿真游戏》基本流程图，如图 3.1所示。  
-![图 3.1](https://tc.chengrui.xyz/2022/05/21/ZwI1asBb2K.png)  
+![图 3.1](https://img-cdn.ccrui.cn.xyz/2022/05/21/ZwI1asBb2K.png)  
 
 根据图 3.1基本流程图的分析，绘制出了用户用例图，如图 3.2所示。  
-![图 3.2](https://tc.chengrui.xyz/2022/05/21/Ns5XUnbzhR.png)  
+![图 3.2](https://img-cdn.ccrui.cn.xyz/2022/05/21/Ns5XUnbzhR.png)  
 
 管理员可以进行上传模型、更改模型组、预览模型、注册用户、删除用户、更改用户组、给用户分配权限等行为。用户可以进行预览模型、移动相机、旋转相机、查看模型细节的行为。  
 管理员行为功能如表 3.1所示。  
 
-![表 3.1](https://tc.chengrui.xyz/2022/05/21/eydhYhIhNF.png)  
+![表 3.1](https://img-cdn.ccrui.cn.xyz/2022/05/21/eydhYhIhNF.png)  
 用户行为功能如表 3.2所示。  
-![表 3.2](https://tc.chengrui.xyz/2022/05/21/mY5s9HJqxL.png)  
+![表 3.2](https://img-cdn.ccrui.cn.xyz/2022/05/21/mY5s9HJqxL.png)  
 
 1. 上传模型
     用例描述如表 3.3所示。  
-    ![表 3.3 ](https://tc.chengrui.xyz/2022/05/21/itQ0QtCwFT.png)  
+    ![表 3.3 ](https://img-cdn.ccrui.cn.xyz/2022/05/21/itQ0QtCwFT.png)  
 2. 更改模型组
    用例描述如表 3.4所示。  
-   ![表 3.4](https://tc.chengrui.xyz/2022/05/21/qIE9z4NDBK.png)  
+   ![表 3.4](https://img-cdn.ccrui.cn.xyz/2022/05/21/qIE9z4NDBK.png)  
 3. 注册用户
    用例描述如表 3.5所示。  
-   ![表 3.5](https://tc.chengrui.xyz/2022/05/21/KQwGOwB9tT.png)  
+   ![表 3.5](https://img-cdn.ccrui.cn.xyz/2022/05/21/KQwGOwB9tT.png)  
 4. 预览模型
    用例描述如表 3.6所示。  
-   ![表 3.6](https://tc.chengrui.xyz/2022/05/21/JTDufJhvek.png)  
+   ![表 3.6](https://img-cdn.ccrui.cn.xyz/2022/05/21/JTDufJhvek.png)  
 
 ### 系统运行环境
 
@@ -190,27 +190,27 @@ MySql的管理方式也是很好的选择，可以利用数据库语句快速的
 通过以上对《虚拟仿真游戏》的功能需求分析以及设计分析，将对其操作流程做出以下设计。  
 管理员使用管理员账号登录管理端，并使用上传功能，将制作好的模型上传到服务器中，并向模型进行分配模型组权限，并使用用户管理工具，注册新的用户账号，并将用户分配不同的用户组中。用户使用用户账号登录后，即可进入用户端，用户可以通过点击左侧模型区的模型预览图，对服务器中有权限访问的模型进行下载并实例化在画面中心，通过移动摄像机的方式，360度的查看模型的细节。  
 《虚拟仿真游戏》流程图如图 4.1所示  
-![图 4.1](https://tc.chengrui.xyz/2022/05/21/VgE5YNDNNR.png)  
+![图 4.1](https://img-cdn.ccrui.cn.xyz/2022/05/21/VgE5YNDNNR.png)  
 
 本项目中采用ASP.NET Core技术搭建服务器应用，并通过Swagger撰写接口文档。本项目中全部API接口均采用HTTP Post链接方式进行通讯，除登录接口外，全部接口均需向服务器提供服务器可信Token进行鉴权操作。API返回值均为统一处理格式，方便前端接入时处理数据。  
 其中接口包括以下8个：  
 
 1. Register  
-   ![表 4.1](https://tc.chengrui.xyz/2022/05/21/kJvBFUGTtZ.png)  
+   ![表 4.1](https://img-cdn.ccrui.cn.xyz/2022/05/21/kJvBFUGTtZ.png)  
 2. Loading  
-   ![表 4.2](https://tc.chengrui.xyz/2022/05/21/NLb0ViIIf9.png)  
+   ![表 4.2](https://img-cdn.ccrui.cn.xyz/2022/05/21/NLb0ViIIf9.png)  
 3. Cancellation  
-   ![表 4.3](https://tc.chengrui.xyz/2022/05/21/0UPsGgM7bH.png)  
+   ![表 4.3](https://img-cdn.ccrui.cn.xyz/2022/05/21/0UPsGgM7bH.png)  
 4. GetUserInformation  
-   ![表 4.4](https://tc.chengrui.xyz/2022/05/21/OoirQ1chMk.png)  
+   ![表 4.4](https://img-cdn.ccrui.cn.xyz/2022/05/21/OoirQ1chMk.png)  
 5. AddAB  
-   ![表 4.5](https://tc.chengrui.xyz/2022/05/21/XklYrXzCxI.png)  
+   ![表 4.5](https://img-cdn.ccrui.cn.xyz/2022/05/21/XklYrXzCxI.png)  
 6. DelAB  
-   ![表 4.6](https://tc.chengrui.xyz/2022/05/21/jmsfizbTK0.png)  
+   ![表 4.6](https://img-cdn.ccrui.cn.xyz/2022/05/21/jmsfizbTK0.png)  
 7. UpDataAB  
-   ![表 4.7](https://tc.chengrui.xyz/2022/05/21/vuJdpHYXpk.png)  
+   ![表 4.7](https://img-cdn.ccrui.cn.xyz/2022/05/21/vuJdpHYXpk.png)  
 8. ShowABPackage  
-   ![表 4.8](https://tc.chengrui.xyz/2022/05/21/zMkE9Zds3y.png)  
+   ![表 4.8](https://img-cdn.ccrui.cn.xyz/2022/05/21/zMkE9Zds3y.png)  
 
 ### 系统功能模块详细设计
 
@@ -219,19 +219,19 @@ MySql的管理方式也是很好的选择，可以利用数据库语句快速的
 登录功能是已经完成注册的用户，输入用户邮箱和密码，并将用户名和密码上传到服务器端，由服务器进行身份验证，并返回用户权限与登录是否成功，在登录后返回Token以帮助服务器对用户动作进行鉴权。  
 功能主要包含UGUI中的Image图片组件、InputField输入框组件、Button按钮组件、Text文本组件。在用户输入用户名和密码后，点击登录按钮，调用封装好的HTTP方法，向服务器发送登录请求，并在后端数据库中对用户名与密码进行身份验证，并将服务器返回信息处理后显示在用户界面。
 根据登录功能模块的设计绘制了登录功能的时序图，如图 4.2所示。  
-![图 4.2](https://tc.chengrui.xyz/2022/05/21/vvxaDB8gfL.png)  
+![图 4.2](https://img-cdn.ccrui.cn.xyz/2022/05/21/vvxaDB8gfL.png)  
 
 #### 模型库模块设计
 
 模型库模块是用来显示用户所在用户组所能查看的全部模型，在用户登录完成后，模型库模块会自动调用封装好的HTTP模块向服务器发出Post请求，服务器在鉴权成功后，向客户端返回全部模型预览图的链接与模型链接，模型库会自动根据预览图加载图片显示在UI中，并且在用户点击预览模型后，通过模型下载链接，从服务器拉取模型进行实例化，并在完成后向用户发出通知。  
 根据模型库模块设计绘制了模型库模块的时序图，如图 4.3所示。  
-![图 4.3](https://tc.chengrui.xyz/2022/05/21/TiYaamnGAQ.png)  
+![图 4.3](https://img-cdn.ccrui.cn.xyz/2022/05/21/TiYaamnGAQ.png)  
 
 #### 用户管理模块设计
 
 用户管理模块是项目中，可以供管理员对用户信息进行管理的模块，在本模块设计中，要充分让管理员简单方便的对用户信息进行管理。管理员在选择用户管理模块后可以进行新建用户、修改用户组、修改用户密码、删除用户等操作。在本模块的设置中，管理员对用户信息进行任何修改时，服务器都会对管理员权限做一次额外认证，保证权限正确。  
 根据用户管理模块设计绘制了用户管理模块的时序图，如图 4.4所示。  
-![图 4.4](https://tc.chengrui.xyz/2022/05/21/vWnBmXhzRE.png)  
+![图 4.4](https://img-cdn.ccrui.cn.xyz/2022/05/21/vWnBmXhzRE.png)  
 
 #### 相机控制模块设计
 
@@ -241,7 +241,7 @@ MySql的管理方式也是很好的选择，可以利用数据库语句快速的
 
 在项目中总是出现一些需要全局多次使用的方法，可以将其封装成对应静态工具类，当需要工具类功能时，可直接调用静态方法实现功能，可以减少项目的内存占用与减少可能出现的逻辑冲突。  
 根据工具类模块设计绘制了工具类模块的时序图，如图 4.5所示。  
-![图 4.5](https://tc.chengrui.xyz/2022/05/21/XbiX8Eikqs.png)  
+![图 4.5](https://img-cdn.ccrui.cn.xyz/2022/05/21/XbiX8Eikqs.png)  
 
 #### 全局通知类模块设计
 
@@ -267,7 +267,7 @@ MySql的管理方式也是很好的选择，可以利用数据库语句快速的
 在进入《虚拟仿真游戏》后首先展示的是用户登录界面，在用户界面中包括图片、输入框、按钮等元素，并通过强调色视觉引导配合文字引导的方式，引导用户正确的输入账号密码。  
 其中图片、输入框、按钮等元素均为Unity3D自带的UGUI系统制作。  
 登录界面效果图，如图 4.6所示。  
-![图 4.6](https://tc.chengrui.xyz/2022/05/21/swp7JELsex.png)  
+![图 4.6](https://img-cdn.ccrui.cn.xyz/2022/05/21/swp7JELsex.png)  
 
 #### 用户界面
 
@@ -276,8 +276,8 @@ MySql的管理方式也是很好的选择，可以利用数据库语句快速的
 模型展示部分，在用户未加载预览模型时，显示为空，只有当用户选择并加载模型后，模型才会在画面中心位置实例化出来，用户可以在中间部分使用鼠标或触控设备滑动以旋转、移动、缩放模型。  
 其他功能部分采用Unity3D中自带的UGUI组件，利用其中的Button、Slider组件完成返回登录、刷新场景、相机归位、控制自动旋转速度功能。  
 用户界面效果图如图 4.7图 4.8所示。  
-![图 4.7](https://tc.chengrui.xyz/2022/05/21/SOIVsXmhfc.png)
-![图 4.8](https://tc.chengrui.xyz/2022/05/21/6jYGehgdaL.png)
+![图 4.7](https://img-cdn.ccrui.cn.xyz/2022/05/21/SOIVsXmhfc.png)
+![图 4.8](https://img-cdn.ccrui.cn.xyz/2022/05/21/6jYGehgdaL.png)
 
 #### 管理界面
 管理界面与用户界面相同，同样采用色块堆叠配色方式，并由于管理员使用功能较多，将界面主要分为模型选择部分，模型修改部分，模型展示部分，用户选择部分，用户修改部分，本地选择部分，其他部分。  
@@ -287,9 +287,9 @@ MySql的管理方式也是很好的选择，可以利用数据库语句快速的
 用户修改部分，采用UGUI组件中Button、InputField、Image组件完成对用户信息的注册、修改、删除用户等操作。  
 本地选择部分，在用户点击“预览模型”按钮后会出现本地文件选择器，可通过选择器选择需要上传的模型文件，在确定选择后，会在模型展示部分展示模型情况，并当用户点击“上传”按钮后将模型上传到服务器。
 管理界面效果图如图 4.9图 4.10图 4.11所示。  
-![图 4.9](https://tc.chengrui.xyz/2022/05/21/PMTtxCMc3S.png)  
-![图 4.10](https://tc.chengrui.xyz/2022/05/21/oVytmfCmk7.png)  
-![图 4.11](https://tc.chengrui.xyz/2022/05/21/t5PKtODXnV.png)  
+![图 4.9](https://img-cdn.ccrui.cn.xyz/2022/05/21/PMTtxCMc3S.png)  
+![图 4.10](https://img-cdn.ccrui.cn.xyz/2022/05/21/oVytmfCmk7.png)  
+![图 4.11](https://img-cdn.ccrui.cn.xyz/2022/05/21/t5PKtODXnV.png)  
 
 ## 第5章 系统实现
 
@@ -298,7 +298,7 @@ MySql的管理方式也是很好的选择，可以利用数据库语句快速的
 场景切换模块，对于使用的用户来说应当是无感的，在打开程序时，首先加载空场景，在其中初始化需要单例模式与切换场景时不删除的GameManager模块与NoticeManager模块。  
 加载完成空场景模块时，同步加载登录模块，这样可以让用户在进入游戏时，可以快速加载场景而不会出现卡顿情况。  
 场景切换模块实现流程如图 5.1所示。  
-![图 5.1](https://tc.chengrui.xyz/2022/05/21/b6gyvZCqpU.png)  
+![图 5.1](https://img-cdn.ccrui.cn.xyz/2022/05/21/b6gyvZCqpU.png)  
 对应主要代码如下：  
 
 ``` csharp
@@ -319,7 +319,7 @@ private void Start()
 
 登录模块为用户进入应用程序首先发挥作用的模块，用户在登录模块中输入账号与密码，登录模块通过HTTP与服务器进行通讯，完成用户的鉴权，并返回用户是否成功登录。  
 登录模块实现流程图如图 5.2所示。  
-![图 5.2](https://tc.chengrui.xyz/2022/05/21/OYxRfZXy1n.png)  
+![图 5.2](https://img-cdn.ccrui.cn.xyz/2022/05/21/OYxRfZXy1n.png)  
 客户端对应主要代码如下：  
 
 ``` csharp
@@ -372,7 +372,7 @@ public void StartLoading()
 
 模型加载模块，用于在用户登录后，向后端请求用户权限内全部模型的链接，并将链接暂存到项目内存中，通过获取到的模型预览图链接加载模型预览图显示到项目UI中。  
 模型加载模块实现流程图如图 5.3所示。  
-![图 5.3](https://tc.chengrui.xyz/2022/05/21/1azZ96Pa6i.png)  
+![图 5.3](https://img-cdn.ccrui.cn.xyz/2022/05/21/1azZ96Pa6i.png)  
 客户端对应主要代码如下：  
 
 ``` csharp
@@ -435,7 +435,7 @@ public void Load()
 ### 模型显示模块实现
 模型显示模块主要在用户选择模型后，从本地缓存的模型链接中下载模型并实例化。  
 模型显示模块实现流程图如图 5.3所示。  
-![图 5.3](https://tc.chengrui.xyz/2022/05/21/imUTmvAwj4.png)  
+![图 5.3](https://img-cdn.ccrui.cn.xyz/2022/05/21/imUTmvAwj4.png)  
 客户端对应主要代码如下：  
 
 ``` csharp
@@ -537,7 +537,7 @@ private void Rotate(float x, float y)
 ### 模型上传模块实现
 模型上传模块，是管理员管理模型的一个主要方法，管理员点击预览本地模型后，在查看模型无误，设定模型组后，即可将模型上传到服务器，服务器对管理员身份进行验证成功后，将模型保存到对象存储，并且将下载路径保存至数据库中。  
 模型上传模块实现流程图如图 5.4所示。  
-![图 5.4](https://tc.chengrui.xyz/2022/05/21/IOjHLZyvhG.png)  
+![图 5.4](https://img-cdn.ccrui.cn.xyz/2022/05/21/IOjHLZyvhG.png)  
 
 ``` csharp
 /// <summary>
@@ -596,7 +596,7 @@ public void Upload()
 ### 用户信息展示模块实现
 用户信息展示模块，是管理员管理全部用户信息的重要模块，在此模块中，管理员可查看全部用户基本信息，并对用户进行注册、删除、修改密码、修改用户组等操作。  
 用户信息展示模块实现流程图如图 5.5所示。  
-![图 5.5](https://tc.chengrui.xyz/2022/05/21/m6WaQ2MIZb.png)  
+![图 5.5](https://img-cdn.ccrui.cn.xyz/2022/05/21/m6WaQ2MIZb.png)  
 用户信息展示模块客户端对应主要代码如下：  
 
 ``` csharp
@@ -666,8 +666,8 @@ private void LoadingUserData()
 测试用例：当用户打开《虚拟仿真游戏》，显示登录界面，输入已在数据库中录入的注册信息，即输入用户邮箱和密码，点击登录，查看是否可以顺利登录。  
 测试流程：根据登录的测试用例方法，进行反复的登录操作，至少使用十位已注册用户信息，测试登录二十次。在登录功能测试的过程中，要着重测试输入用户信息不合法或输入错误的情况，查看《虚拟仿真游戏》是否能给予用户正确的信息返回。  
 测试结果：输入正确用户信息登录时如图 6.1所示，正常进入对应场景。输入错误用户信息登录时如图 6.2所示，有明显提示。测试完成后，一切运行正常，未出现漏洞。  
-![图 6.1](https://tc.chengrui.xyz/2022/05/21/JSMgrZtLRU.png)  
-![图 6.2](https://tc.chengrui.xyz/2022/05/21/SJUXvU4aJX.png)  
+![图 6.1](https://img-cdn.ccrui.cn.xyz/2022/05/21/JSMgrZtLRU.png)  
+![图 6.2](https://img-cdn.ccrui.cn.xyz/2022/05/21/SJUXvU4aJX.png)  
 
 #### 模型显示测试
 
@@ -676,9 +676,9 @@ private void LoadingUserData()
 测试用例：当用户进入客户端或管理端后，点击左侧模型预览图后，并点击加载模型，查看模型是否正确在画面中显示。  
 测试流程：根据模型显示测试用例方法，进行反复的加载模型操作，至少测试五个云端模型显示。在模型显示测试的过程中，要着重测试加载云端大模型时，是否在加载时会给予用户良好的提示，并在模型加载成功后是否给予用户正确的信息反馈，模型加载失败时，是否给与用户正确的信息返回。  
 测试结果：点击云端模型并加载过程时如图 6.3所示，模型加载成功时如图 6.4所示，模型加载失败时如图 6.5所示。测试完成后，一切运行正常，未出现漏洞。  
-![图 6.3](https://tc.chengrui.xyz/2022/05/21/vCpD9gLXO9.png)  
-![图 6.4](https://tc.chengrui.xyz/2022/05/21/8du81sKSiF.png)  
-![图 6.5](https://tc.chengrui.xyz/2022/05/21/O8ApVQtAk4.png)  
+![图 6.3](https://img-cdn.ccrui.cn.xyz/2022/05/21/vCpD9gLXO9.png)  
+![图 6.4](https://img-cdn.ccrui.cn.xyz/2022/05/21/8du81sKSiF.png)  
+![图 6.5](https://img-cdn.ccrui.cn.xyz/2022/05/21/O8ApVQtAk4.png)  
 
 #### 上传模型测试
 
@@ -687,9 +687,9 @@ private void LoadingUserData()
 测试用例：当用户进入管理端后，点击预览模型，预览需要上传的模型后，设定模型组后，点击上传按钮，查看模型是否上传成功。  
 测试流程：根据上传模型测试用例方法，进行反复的上传模型操作，至少测试五个模型的预览与上传，并选择至少五次错误模型格式进行上传，在上传模型测试的过程中要着重测试上传错误模型时候，是否会给予用户正确的信息反馈，模型上传成功后是否会给予用户正确的信息返回。  
 测试结果：点击预览模型选择正确模型并上传成功如图 6.6所示，点击预览模型选择错误模型并上传如图 6.7所示，未选择模型直接点击上传如图 6.8所示。测试完成后，一切运行正常，未出现漏洞。  
-![图 6.6](https://tc.chengrui.xyz/2022/05/21/rbtgdJIXh7.png)  
-![图 6.7](https://tc.chengrui.xyz/2022/05/21/obSwMzjaWm.png)  
-![图 6.8](https://tc.chengrui.xyz/2022/05/21/oFtYMlf1mm.png)  
+![图 6.6](https://img-cdn.ccrui.cn.xyz/2022/05/21/rbtgdJIXh7.png)  
+![图 6.7](https://img-cdn.ccrui.cn.xyz/2022/05/21/obSwMzjaWm.png)  
+![图 6.8](https://img-cdn.ccrui.cn.xyz/2022/05/21/oFtYMlf1mm.png)  
 
 #### 修改用户信息测试
 
@@ -698,9 +698,9 @@ private void LoadingUserData()
 测试用例：当用户进入管理端后，点击右侧选择用户后，输入新的密码或用户组，查看是否正确修改用户信息。  
 测试流程：根据修改用户信息测试用例方法，进行反复的修改用户信息操作，至少测试十次修改用户信息。在测试修改用户信息过程中，要着重测试修改用户信息不合法的情况，将唯一管理员权限修改为普通用户权限，并在各种情况下均给予用户友好的信息返回。  
 测试结果，正确修改用户信息如图 6.9所示，修改用户信息不合法时如图 6.10所示，修改唯一管理员权限时候如图 6.11所示。  
-![图 6.9](https://tc.chengrui.xyz/2022/05/21/bS8zV45eXd.png)  
-![图 6.10](https://tc.chengrui.xyz/2022/05/21/qeRY1rMRZ2.png)  
-![图 6.11](https://tc.chengrui.xyz/2022/05/21/j8F3LZxwdp.png)  
+![图 6.9](https://img-cdn.ccrui.cn.xyz/2022/05/21/bS8zV45eXd.png)  
+![图 6.10](https://img-cdn.ccrui.cn.xyz/2022/05/21/qeRY1rMRZ2.png)  
+![图 6.11](https://img-cdn.ccrui.cn.xyz/2022/05/21/j8F3LZxwdp.png)  
 
 ### 测试结论
 
